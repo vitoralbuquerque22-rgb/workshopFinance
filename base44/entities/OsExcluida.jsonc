@@ -1,0 +1,45 @@
+{
+  "name": "OsExcluida",
+  "type": "object",
+  "properties": {
+    "os_numero": {
+      "type": "string"
+    },
+    "os_id_original": {
+      "type": "string"
+    },
+    "cliente_nome": {
+      "type": "string"
+    },
+    "veiculo_placa": {
+      "type": "string"
+    },
+    "valor_total": {
+      "type": "number",
+      "default": 0
+    },
+    "status_anterior": {
+      "type": "string"
+    },
+    "motivo": {
+      "type": "string"
+    },
+    "excluido_por_id": {
+      "type": "string"
+    },
+    "excluido_por_nome": {
+      "type": "string"
+    },
+    "data_exclusao": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "motivo"
+  ]
+}

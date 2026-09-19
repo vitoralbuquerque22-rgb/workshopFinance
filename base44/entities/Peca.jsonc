@@ -1,0 +1,177 @@
+{
+  "name": "Peca",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "marca": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "motor",
+        "freio",
+        "suspensao",
+        "eletrica",
+        "transmissao",
+        "carroceria",
+        "acessorios",
+        "fluidos",
+        "outros"
+      ],
+      "default": "outros"
+    },
+    "unidade": {
+      "type": "string",
+      "enum": [
+        "UN",
+        "CX",
+        "KG",
+        "L",
+        "MT",
+        "PCT"
+      ],
+      "default": "UN"
+    },
+    "codigo_barras": {
+      "type": "string"
+    },
+    "qr_code": {
+      "type": "string"
+    },
+    "fornecedor_principal_id": {
+      "type": "string"
+    },
+    "deposito_principal_id": {
+      "type": "string"
+    },
+    "estoque_atual": {
+      "type": "number",
+      "default": 0
+    },
+    "estoque_reservado": {
+      "type": "number",
+      "default": 0
+    },
+    "estoque_consignado": {
+      "type": "number",
+      "default": 0
+    },
+    "estoque_minimo": {
+      "type": "number",
+      "default": 0
+    },
+    "estoque_maximo": {
+      "type": "number",
+      "default": 0
+    },
+    "ponto_reposicao": {
+      "type": "number",
+      "default": 0
+    },
+    "controla_lote": {
+      "type": "boolean",
+      "default": false
+    },
+    "curva_abc": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        ""
+      ],
+      "default": ""
+    },
+    "localizacao": {
+      "type": "string"
+    },
+    "valor_custo_medio": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_ultima_compra": {
+      "type": "number",
+      "default": 0
+    },
+    "margem": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_venda": {
+      "type": "number",
+      "default": 0
+    },
+    "ncm": {
+      "type": "string"
+    },
+    "cest": {
+      "type": "string"
+    },
+    "cfop": {
+      "type": "string"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "default": "0"
+    },
+    "aliquota_icms": {
+      "type": "number",
+      "default": 0
+    },
+    "aliquota_ipi": {
+      "type": "number",
+      "default": 0
+    },
+    "aliquota_pis": {
+      "type": "number",
+      "default": 0
+    },
+    "aliquota_cofins": {
+      "type": "number",
+      "default": 0
+    },
+    "comissao_modo": {
+      "type": "string",
+      "enum": [
+        "padrao",
+        "sim",
+        "nao",
+        "personalizado"
+      ],
+      "default": "padrao"
+    },
+    "comissao_percentual": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "codigo",
+    "descricao"
+  ]
+}

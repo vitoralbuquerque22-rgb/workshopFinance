@@ -1,0 +1,208 @@
+{
+  "name": "AtivoOperacional",
+  "type": "object",
+  "properties": {
+    "codigo_patrimonial": {
+      "type": "string",
+      "description": "C\u00f3digo patrimonial \u00fanico gerado automaticamente (ex: FRT-000045)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Identifica\u00e7\u00e3o amig\u00e1vel (ex: Pickup Oficina, Guincho 01)"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "veiculo",
+        "moto",
+        "van",
+        "pickup",
+        "guincho",
+        "empilhadeira",
+        "reboque",
+        "carrinho",
+        "outro"
+      ],
+      "default": "veiculo",
+      "description": "Tipo do ativo da frota operacional"
+    },
+    "placa": {
+      "type": "string"
+    },
+    "marca": {
+      "type": "string"
+    },
+    "modelo": {
+      "type": "string"
+    },
+    "ano": {
+      "type": "string"
+    },
+    "cor": {
+      "type": "string"
+    },
+    "renavam": {
+      "type": "string"
+    },
+    "chassi": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string",
+      "description": "Agrupamento livre (ex: Leves, Pesados, Apoio)"
+    },
+    "responsavel_id": {
+      "type": "string"
+    },
+    "responsavel_nome": {
+      "type": "string"
+    },
+    "localizacao": {
+      "type": "string",
+      "description": "Base/p\u00e1tio onde o ativo fica quando ocioso"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "quilometragem": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_compra": {
+      "type": "number",
+      "default": 0
+    },
+    "data_compra": {
+      "type": "string",
+      "format": "date"
+    },
+    "fornecedor_id": {
+      "type": "string"
+    },
+    "documentacao": {
+      "type": "object",
+      "description": "Vencimentos de documenta\u00e7\u00e3o da frota",
+      "properties": {
+        "licenciamento_vence_em": {
+          "type": "string",
+          "format": "date"
+        },
+        "seguro_vence_em": {
+          "type": "string",
+          "format": "date"
+        },
+        "seguradora": {
+          "type": "string"
+        }
+      }
+    },
+    "manutencao_preventiva": {
+      "type": "object",
+      "description": "Manuten\u00e7\u00e3o preventiva por tempo ou quilometragem",
+      "properties": {
+        "ativa": {
+          "type": "boolean",
+          "default": false
+        },
+        "intervalo_dias": {
+          "type": "number",
+          "default": 0
+        },
+        "intervalo_km": {
+          "type": "number",
+          "default": 0
+        },
+        "ultima_em": {
+          "type": "string",
+          "format": "date"
+        },
+        "ultima_km": {
+          "type": "number",
+          "default": 0
+        },
+        "proxima_em": {
+          "type": "string",
+          "format": "date"
+        },
+        "proxima_km": {
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "historico": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "cadastro",
+              "movimentacao",
+              "manutencao",
+              "responsavel",
+              "status",
+              "abastecimento",
+              "observacao"
+            ],
+            "default": "observacao"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "de": {
+            "type": "string"
+          },
+          "para": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "fotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "documentos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "disponivel",
+        "em_uso",
+        "em_manutencao",
+        "baixado"
+      ],
+      "default": "disponivel"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "nome",
+    "tipo"
+  ]
+}

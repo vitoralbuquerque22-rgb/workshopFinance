@@ -1,0 +1,67 @@
+{
+  "name": "ServicoComposto",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "itens_mao_obra": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mao_obra_id": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number",
+            "default": 1
+          }
+        }
+      }
+    },
+    "itens_pecas_sugeridas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "peca_id": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number",
+            "default": 1
+          }
+        }
+      }
+    },
+    "tipo_valor": {
+      "type": "string",
+      "enum": [
+        "calculado",
+        "manual"
+      ],
+      "default": "calculado"
+    },
+    "valor_total": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "codigo",
+    "descricao",
+    "tipo_valor"
+  ]
+}

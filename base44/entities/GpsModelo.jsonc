@@ -1,0 +1,46 @@
+{
+  "name": "GpsModelo",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "tipo_oficina": {
+      "type": "string",
+      "enum": [
+        "linha_leve",
+        "diesel",
+        "moto",
+        "suv",
+        "premium",
+        "eletrica",
+        "cambio",
+        "outros"
+      ],
+      "default": "linha_leve"
+    },
+    "versao": {
+      "type": "number",
+      "default": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    },
+    "is_default": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "nome",
+    "tipo_oficina"
+  ]
+}

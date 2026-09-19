@@ -1,0 +1,29 @@
+{
+  "name": "CentroCusto",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "codigo": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "receita",
+        "despesa"
+      ],
+      "default": "despesa"
+    },
+    "pai_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

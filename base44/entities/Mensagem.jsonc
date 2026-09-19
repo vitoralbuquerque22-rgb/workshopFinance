@@ -1,0 +1,118 @@
+{
+  "name": "Mensagem",
+  "type": "object",
+  "properties": {
+    "conversa_id": {
+      "type": "string"
+    },
+    "canal": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "instagram",
+        "messenger",
+        "email",
+        "site",
+        "telegram",
+        "sms",
+        "google_business",
+        "interno"
+      ],
+      "default": "whatsapp"
+    },
+    "direcao": {
+      "type": "string",
+      "enum": [
+        "entrada",
+        "saida"
+      ],
+      "default": "entrada"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "texto",
+        "imagem",
+        "audio",
+        "video",
+        "arquivo",
+        "template",
+        "sistema"
+      ],
+      "default": "texto"
+    },
+    "texto": {
+      "type": "string"
+    },
+    "midia_url": {
+      "type": "string"
+    },
+    "midia_nome": {
+      "type": "string"
+    },
+    "canal_externo_id": {
+      "type": "string",
+      "description": "ID da mensagem no provedor externo (para dedupe / status de entrega)"
+    },
+    "autor_tipo": {
+      "type": "string",
+      "enum": [
+        "cliente",
+        "consultor",
+        "sistema",
+        "automacao"
+      ],
+      "default": "cliente"
+    },
+    "autor_id": {
+      "type": "string"
+    },
+    "autor_nome": {
+      "type": "string"
+    },
+    "status_entrega": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "enviada",
+        "entregue",
+        "lida",
+        "falhou"
+      ]
+    },
+    "erro_detalhe": {
+      "type": "string"
+    },
+    "enviada_em": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "referencia": {
+      "type": "object",
+      "description": "V\u00ednculo opcional a um objeto do ERP que originou a mensagem (ex: mudan\u00e7a de etapa da OS)",
+      "properties": {
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "os_etapa",
+            "orcamento",
+            "pos_venda",
+            "pesquisa",
+            "lembrete",
+            "manual"
+          ]
+        },
+        "ordem_servico_id": {
+          "type": "string"
+        },
+        "etapa": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "conversa_id",
+    "direcao"
+  ]
+}

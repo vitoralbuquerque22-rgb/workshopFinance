@@ -1,0 +1,86 @@
+{
+  "name": "MarketingIntegracao",
+  "type": "object",
+  "properties": {
+    "plataforma": {
+      "type": "string",
+      "enum": [
+        "meta",
+        "google",
+        "site",
+        "whatsapp"
+      ],
+      "default": "meta"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": false
+    },
+    "ambiente": {
+      "type": "string",
+      "enum": [
+        "homologacao",
+        "producao"
+      ],
+      "default": "producao"
+    },
+    "url_api": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "chave_secreta": {
+      "type": "string"
+    },
+    "conta_anuncios": {
+      "type": "string"
+    },
+    "pixel_id": {
+      "type": "string"
+    },
+    "webhook_url": {
+      "type": "string"
+    },
+    "eventos_sincronizados": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frequencia_sync": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "horaria",
+        "diaria"
+      ],
+      "default": "diaria"
+    },
+    "ultima_sync": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ultimo_status": {
+      "type": "string",
+      "enum": [
+        "nunca",
+        "sucesso",
+        "erro"
+      ],
+      "default": "nunca"
+    },
+    "ultimo_erro": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "plataforma"
+  ]
+}

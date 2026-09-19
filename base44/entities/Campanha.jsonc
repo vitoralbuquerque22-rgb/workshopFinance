@@ -1,0 +1,67 @@
+{
+  "name": "Campanha",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "plataforma": {
+      "type": "string",
+      "enum": [
+        "meta_ads",
+        "google_ads",
+        "instagram",
+        "whatsapp",
+        "site",
+        "indicacao",
+        "outro"
+      ],
+      "default": "meta_ads"
+    },
+    "objetivo": {
+      "type": "string",
+      "enum": [
+        "leads",
+        "conversao",
+        "trafego",
+        "alcance",
+        "engajamento"
+      ],
+      "default": "leads"
+    },
+    "id_externo": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "investimento": {
+      "type": "number",
+      "default": 0
+    },
+    "data_inicio": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_fim": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativa",
+        "pausada",
+        "encerrada"
+      ],
+      "default": "ativa"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "nome",
+    "plataforma"
+  ]
+}

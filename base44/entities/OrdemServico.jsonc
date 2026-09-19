@@ -1,0 +1,656 @@
+{
+  "name": "OrdemServico",
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string"
+    },
+    "cliente_id": {
+      "type": "string"
+    },
+    "veiculo_id": {
+      "type": "string"
+    },
+    "descricao_problema": {
+      "type": "string"
+    },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "servico",
+              "peca",
+              "mao_obra",
+              "servico_composto"
+            ]
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number"
+          },
+          "valor_unitario": {
+            "type": "number"
+          },
+          "valor_total": {
+            "type": "number"
+          },
+          "custo_unitario": {
+            "type": "number",
+            "default": 0
+          },
+          "aprovado": {
+            "type": "boolean",
+            "default": true,
+            "description": "Se o cliente aprovou este item. false = item recusado na aprova\u00e7\u00e3o parcial (sai da execu\u00e7\u00e3o/faturamento e vira oportunidade no CRM)."
+          },
+          "motivo_recusa": {
+            "type": "string",
+            "enum": [
+              "preco",
+              "prazo",
+              "concorrencia",
+              "desistiu",
+              "sem_retorno",
+              "outro"
+            ],
+            "description": "Motivo pelo qual o cliente n\u00e3o aprovou este item"
+          },
+          "motivo_recusa_detalhe": {
+            "type": "string",
+            "description": "Justificativa livre da recusa do item (ex: faltou cart\u00e3o)"
+          },
+          "data_contato_crm": {
+            "type": "string",
+            "format": "date",
+            "description": "Data agendada para a equipe de CRM contatar o cliente sobre este item recusado"
+          },
+          "peca_id": {
+            "type": "string"
+          },
+          "mao_obra_id": {
+            "type": "string"
+          },
+          "servico_composto_id": {
+            "type": "string"
+          },
+          "horas_vendidas": {
+            "type": "number",
+            "default": 0
+          },
+          "horas_tecnicas_previstas": {
+            "type": "number",
+            "default": 0
+          },
+          "horas_apontadas": {
+            "type": "number",
+            "default": 0
+          },
+          "comissao_modo": {
+            "type": "string",
+            "enum": [
+              "padrao",
+              "sim",
+              "nao",
+              "parcial",
+              "personalizado"
+            ],
+            "default": "padrao"
+          },
+          "comissao_percentual": {
+            "type": "number",
+            "default": 0
+          },
+          "apontamentos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "colaborador_id": {
+                  "type": "string"
+                },
+                "colaborador_nome": {
+                  "type": "string"
+                },
+                "percentual": {
+                  "type": "number",
+                  "default": 100
+                },
+                "horas": {
+                  "type": "number",
+                  "default": 0
+                }
+              }
+            }
+          },
+          "sessoes": {
+            "type": "array",
+            "description": "Sess\u00f5es de cron\u00f4metro por t\u00e9cnico neste item. Cada sess\u00e3o registra in\u00edcio/fim, etapa e pausas justificadas.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "colaborador_id": {
+                  "type": "string"
+                },
+                "colaborador_nome": {
+                  "type": "string"
+                },
+                "etapa": {
+                  "type": "string",
+                  "enum": [
+                    "diagnostico",
+                    "orcamento",
+                    "aprovacao",
+                    "execucao",
+                    "qualidade",
+                    "aguardando_faturamento"
+                  ],
+                  "default": "execucao",
+                  "description": "Etapa do fluxo em que o tempo foi aplicado"
+                },
+                "inicio": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "fim": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "em_andamento",
+                    "pausado",
+                    "concluido"
+                  ],
+                  "default": "em_andamento"
+                },
+                "pausas": {
+                  "type": "array",
+                  "description": "Pausas dentro da sess\u00e3o, cada uma com motivo justificado",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "motivo": {
+                        "type": "string",
+                        "enum": [
+                          "almoco",
+                          "aguardando_pecas",
+                          "servico_terceiro",
+                          "retifica",
+                          "outro"
+                        ],
+                        "default": "outro"
+                      },
+                      "observacao": {
+                        "type": "string"
+                      },
+                      "inicio": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "fim": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                },
+                "horas_liquidas": {
+                  "type": "number",
+                  "default": 0,
+                  "description": "Horas trabalhadas descontando as pausas (calculado ao concluir)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "distribuicao_faturamento": {
+      "type": "object",
+      "description": "Regra de rateio fiscal/financeiro definida na abertura da OS (Cen\u00e1rio 2). Edit\u00e1vel at\u00e9 o faturamento. Define em qual CNPJ (Filial) pe\u00e7as e servi\u00e7os ser\u00e3o faturados.",
+      "properties": {
+        "modo": {
+          "type": "string",
+          "enum": [
+            "unico",
+            "dividido"
+          ],
+          "default": "unico",
+          "description": "unico = pe\u00e7as e servi\u00e7os no mesmo CNPJ. dividido = CNPJ separado para pe\u00e7as e para servi\u00e7os."
+        },
+        "cnpj_pecas": {
+          "type": "string",
+          "description": "filial_id do CNPJ que fatura as pe\u00e7as (no modo \u00fanico, \u00e9 o CNPJ de tudo)"
+        },
+        "cnpj_servicos": {
+          "type": "string",
+          "description": "filial_id do CNPJ que fatura os servi\u00e7os (usado apenas no modo dividido)"
+        }
+      }
+    },
+    "valor_pecas": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_servicos": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_desconto": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_total": {
+      "type": "number",
+      "default": 0
+    },
+    "custo_total": {
+      "type": "number",
+      "default": 0
+    },
+    "aprovacao_parcial": {
+      "type": "object",
+      "description": "Registro da aprova\u00e7\u00e3o parcial do or\u00e7amento \u2014 quais itens o cliente n\u00e3o aprovou e o encaminhamento ao CRM.",
+      "properties": {
+        "registrada": {
+          "type": "boolean",
+          "default": false
+        },
+        "registrada_em": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "registrada_por_nome": {
+          "type": "string"
+        },
+        "lead_id": {
+          "type": "string",
+          "description": "Lead criado no CRM com os itens recusados para prospec\u00e7\u00e3o futura"
+        },
+        "valor_recusado": {
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "condicao_pagamento": {
+      "type": "object",
+      "description": "Condi\u00e7\u00f5es de pagamento negociadas com o cliente (definidas no in\u00edcio da OS e/ou na finaliza\u00e7\u00e3o). Usadas como padr\u00e3o pelo faturamento ao emitir a NF-e.",
+      "properties": {
+        "forma": {
+          "type": "string",
+          "enum": [
+            "pix",
+            "boleto",
+            "promissoria",
+            "cartao",
+            "dinheiro",
+            "transferencia",
+            "parcelado"
+          ],
+          "default": "pix"
+        },
+        "numero_parcelas": {
+          "type": "number",
+          "default": 1
+        },
+        "data_primeiro_vencimento": {
+          "type": "string",
+          "format": "date",
+          "description": "Vencimento da 1\u00aa parcela/t\u00edtulo (as demais seguem mensalmente)"
+        },
+        "conta_bancaria_id": {
+          "type": "string",
+          "description": "Conta/banco de destino do recebimento"
+        },
+        "observacoes": {
+          "type": "string"
+        }
+      }
+    },
+    "tecnico_responsavel": {
+      "type": "string"
+    },
+    "consultor": {
+      "type": "string"
+    },
+    "consultor_id": {
+      "type": "string"
+    },
+    "criado_por_id": {
+      "type": "string"
+    },
+    "criado_por_nome": {
+      "type": "string"
+    },
+    "qualidade_por_id": {
+      "type": "string"
+    },
+    "qualidade_por_nome": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "empresa_id": {
+      "type": "string"
+    },
+    "origem_marketing": {
+      "type": "object",
+      "properties": {
+        "lead_id": {
+          "type": "string"
+        },
+        "origem": {
+          "type": "string"
+        },
+        "plataforma": {
+          "type": "string"
+        },
+        "campanha_id": {
+          "type": "string"
+        },
+        "campanha_nome": {
+          "type": "string"
+        },
+        "anuncio": {
+          "type": "string"
+        },
+        "utm_source": {
+          "type": "string"
+        },
+        "utm_medium": {
+          "type": "string"
+        },
+        "utm_campaign": {
+          "type": "string"
+        },
+        "utm_content": {
+          "type": "string"
+        }
+      }
+    },
+    "data_abertura": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_prevista": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_fechamento": {
+      "type": "string",
+      "format": "date"
+    },
+    "quilometragem_entrada": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "orcamento",
+        "aprovado",
+        "em_andamento",
+        "concluido",
+        "cancelado"
+      ],
+      "default": "orcamento"
+    },
+    "etapa_fluxo": {
+      "type": "string",
+      "enum": [
+        "recepcao",
+        "diagnostico",
+        "orcamento",
+        "aprovacao",
+        "compra",
+        "execucao",
+        "qualidade",
+        "aguardando_faturamento",
+        "nota_emitida",
+        "pagamento",
+        "entrega",
+        "pos_venda"
+      ],
+      "default": "recepcao"
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "etapa": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "comentarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "texto": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "fotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "videos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "audios": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "arquivos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "checklist_producao": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descricao": {
+            "type": "string"
+          },
+          "concluido": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "execucao_inicio": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "execucao_fim": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "horas_trabalhadas": {
+      "type": "number",
+      "default": 0
+    },
+    "sessoes_producao": {
+      "type": "array",
+      "description": "Sess\u00f5es de cron\u00f4metro por t\u00e9cnico no n\u00edvel da OS inteira. V\u00e1rios t\u00e9cnicos podem trabalhar em paralelo no mesmo ve\u00edculo; o esfor\u00e7o total soma as horas l\u00edquidas de todas as sess\u00f5es. Cada sess\u00e3o tem pausas justificadas com motivo e hor\u00e1rio.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "colaborador_id": {
+            "type": "string"
+          },
+          "colaborador_nome": {
+            "type": "string"
+          },
+          "inicio": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fim": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "em_andamento",
+              "pausado",
+              "concluido"
+            ],
+            "default": "em_andamento"
+          },
+          "pausas": {
+            "type": "array",
+            "description": "Pausas dentro da sess\u00e3o, cada uma com motivo justificado",
+            "items": {
+              "type": "object",
+              "properties": {
+                "motivo": {
+                  "type": "string",
+                  "enum": [
+                    "almoco",
+                    "aguardando_pecas",
+                    "servico_terceiro",
+                    "retifica",
+                    "outro"
+                  ],
+                  "default": "outro"
+                },
+                "observacao": {
+                  "type": "string"
+                },
+                "inicio": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "fim": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          },
+          "horas_liquidas": {
+            "type": "number",
+            "default": 0,
+            "description": "Horas trabalhadas descontando as pausas (calculado ao concluir)"
+          }
+        }
+      }
+    },
+    "elevador_id": {
+      "type": "string"
+    },
+    "retrabalho": {
+      "type": "boolean",
+      "default": false
+    },
+    "tipo_retrabalho": {
+      "type": "string",
+      "enum": [
+        "nenhum",
+        "interno",
+        "retorno_cliente"
+      ],
+      "default": "nenhum"
+    },
+    "os_origem_id": {
+      "type": "string"
+    },
+    "os_origem_numero": {
+      "type": "string"
+    },
+    "motivo_retrabalho": {
+      "type": "string"
+    },
+    "motivo_recusa": {
+      "type": "string",
+      "enum": [
+        "preco",
+        "prazo",
+        "concorrencia",
+        "vai_esperar",
+        "desistiu",
+        "outro"
+      ]
+    },
+    "motivo_recusa_detalhe": {
+      "type": "string"
+    },
+    "data_recusa": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "gps_atendimento_id": {
+      "type": "string"
+    },
+    "conta_receber_id": {
+      "type": "string"
+    },
+    "nota_fiscal_id": {
+      "type": "string"
+    },
+    "pedidos_compra_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "orcamento"
+      ],
+      "default": "manual"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "cliente_id",
+    "veiculo_id"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "name": "ContaPagar",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "fornecedor_id": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "centro_custo_id": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "number"
+    },
+    "data_vencimento": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_pagamento": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "pago",
+        "cancelado"
+      ],
+      "default": "pendente"
+    },
+    "forma_pagamento": {
+      "type": "string",
+      "enum": [
+        "pix",
+        "boleto",
+        "transferencia",
+        "cartao",
+        "dinheiro"
+      ]
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "nfe",
+        "dda"
+      ],
+      "default": "manual"
+    },
+    "dda_confirmado": {
+      "type": "boolean",
+      "default": false
+    },
+    "observacoes": {
+      "type": "string"
+    },
+    "parcela_atual": {
+      "type": "number",
+      "default": 1
+    },
+    "total_parcelas": {
+      "type": "number",
+      "default": 1
+    }
+  },
+  "required": [
+    "descricao",
+    "valor",
+    "data_vencimento"
+  ]
+}

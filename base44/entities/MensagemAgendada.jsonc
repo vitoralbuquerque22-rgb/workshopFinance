@@ -1,0 +1,99 @@
+{
+  "name": "MensagemAgendada",
+  "type": "object",
+  "properties": {
+    "conversa_id": {
+      "type": "string",
+      "description": "Conversa destino. Se vazia, o despachador tenta localizar/abrir uma pelo cliente/lead."
+    },
+    "cliente_id": {
+      "type": "string"
+    },
+    "lead_id": {
+      "type": "string"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "template_id": {
+      "type": "string",
+      "description": "Template de origem (vazio quando \u00e9 agendamento avulso com texto livre)"
+    },
+    "evento": {
+      "type": "string",
+      "description": "Gatilho que originou este agendamento (c\u00f3pia do evento do template ou 'manual')"
+    },
+    "canal": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "instagram",
+        "messenger",
+        "email",
+        "sms",
+        "auto"
+      ],
+      "default": "auto"
+    },
+    "texto": {
+      "type": "string",
+      "description": "Texto j\u00e1 renderizado (vari\u00e1veis substitu\u00eddas) OU texto livre do agendamento avulso"
+    },
+    "midia_url": {
+      "type": "string"
+    },
+    "midia_tipo": {
+      "type": "string",
+      "enum": [
+        "imagem",
+        "video",
+        "arquivo"
+      ]
+    },
+    "agendado_para": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Momento em que a mensagem deve ser disparada"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "enviada",
+        "cancelada",
+        "falhou"
+      ],
+      "default": "pendente"
+    },
+    "tentativas": {
+      "type": "number",
+      "default": 0
+    },
+    "enviado_em": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "erro_detalhe": {
+      "type": "string"
+    },
+    "chave_dedupe": {
+      "type": "string",
+      "description": "Chave \u00fanica l\u00f3gica (ex: os_finalizada:OS123:template456) para evitar agendar 2x o mesmo gatilho"
+    },
+    "criado_por_id": {
+      "type": "string"
+    },
+    "criado_por_nome": {
+      "type": "string"
+    },
+    "empresa_id": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agendado_para"
+  ]
+}

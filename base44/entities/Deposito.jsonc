@@ -1,0 +1,43 @@
+{
+  "name": "Deposito",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "codigo": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "principal",
+        "secundario",
+        "consignado",
+        "avariado",
+        "transito"
+      ],
+      "default": "principal"
+    },
+    "endereco": {
+      "type": "string"
+    },
+    "responsavel": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "IntegracaoLog",
+  "type": "object",
+  "properties": {
+    "conta_bancaria_id": {
+      "type": "string"
+    },
+    "tipo_integracao": {
+      "type": "string",
+      "enum": [
+        "cnab",
+        "open_banking",
+        "manual"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "sucesso",
+        "erro",
+        "parcial"
+      ],
+      "default": "sucesso"
+    },
+    "boletos_encontrados": {
+      "type": "number",
+      "default": 0
+    },
+    "boletos_criados": {
+      "type": "number",
+      "default": 0
+    },
+    "boletos_match": {
+      "type": "number",
+      "default": 0
+    },
+    "erro_detalhe": {
+      "type": "string"
+    },
+    "data_sync": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "tipo_integracao"
+  ]
+}

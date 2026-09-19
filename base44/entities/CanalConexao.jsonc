@@ -1,0 +1,122 @@
+{
+  "name": "CanalConexao",
+  "type": "object",
+  "properties": {
+    "empresa_id": {
+      "type": "string",
+      "description": "Empresa dona desta conex\u00e3o de canal (isolamento multiempresa)"
+    },
+    "filial_id": {
+      "type": "string",
+      "description": "Filial espec\u00edfica, se aplic\u00e1vel. Vazio = conex\u00e3o da empresa toda"
+    },
+    "canal": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "instagram",
+        "messenger"
+      ],
+      "default": "whatsapp"
+    },
+    "modo_conexao": {
+      "type": "string",
+      "enum": [
+        "oficial",
+        "qrcode"
+      ],
+      "default": "oficial",
+      "description": "oficial = API oficial da Meta (credenciais). qrcode = sess\u00e3o n\u00e3o-oficial via QR (requer servidor externo 24h)"
+    },
+    "nome_exibicao": {
+      "type": "string",
+      "description": "R\u00f3tulo amig\u00e1vel do canal (ex: WhatsApp Oficina Centro)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "desconectado",
+        "aguardando_qr",
+        "conectado",
+        "erro",
+        "expirado"
+      ],
+      "default": "desconectado"
+    },
+    "webhook_verificado": {
+      "type": "boolean",
+      "default": false,
+      "description": "Handshake do webhook (hub.challenge) conclu\u00eddo com sucesso"
+    },
+    "credenciais": {
+      "type": "object",
+      "description": "Credenciais oficiais da Meta fornecidas pela empresa (modo oficial)",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "phone_number_id": {
+          "type": "string",
+          "description": "WhatsApp Phone Number ID (modo WhatsApp oficial)"
+        },
+        "business_account_id": {
+          "type": "string",
+          "description": "WABA ID / IG Business ID / Page ID conforme o canal"
+        },
+        "page_id": {
+          "type": "string",
+          "description": "ID da P\u00e1gina do Facebook / conta IG Business usada para rotear o webhook"
+        },
+        "access_token": {
+          "type": "string",
+          "description": "Token de acesso permanente/da p\u00e1gina fornecido pela empresa"
+        },
+        "app_secret": {
+          "type": "string",
+          "description": "App Secret da Meta, usado para validar a assinatura HMAC (X-Hub-Signature-256) do webhook"
+        }
+      }
+    },
+    "verify_token": {
+      "type": "string",
+      "description": "Token de verifica\u00e7\u00e3o gerado pelo sistema para o handshake do webhook da Meta"
+    },
+    "qrcode": {
+      "type": "object",
+      "description": "Estado da sess\u00e3o via QR Code (n\u00e3o-oficial). S\u00f3 fica ativo com servidor externo 24h.",
+      "properties": {
+        "qr_data_url": {
+          "type": "string",
+          "description": "Imagem do QR (data URL) gerada pelo provedor de sess\u00e3o externo"
+        },
+        "sessao_id": {
+          "type": "string",
+          "description": "Identificador da sess\u00e3o no provedor externo"
+        },
+        "provedor_url": {
+          "type": "string",
+          "description": "Endpoint do servidor externo 24h respons\u00e1vel por manter a sess\u00e3o"
+        },
+        "gerado_em": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expira_em": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ultimo_evento_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "\u00daltimo recebimento/envio de mensagem por este canal"
+    },
+    "erro_detalhe": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "canal"
+  ]
+}

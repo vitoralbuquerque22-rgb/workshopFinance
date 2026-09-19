@@ -1,0 +1,127 @@
+{
+  "name": "Ocorrencia",
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string",
+      "description": "N\u00famero sequencial da ocorr\u00eancia (ex: OCO-000045)"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "incidente",
+        "atraso",
+        "falha_equipamento",
+        "seguranca",
+        "qualidade",
+        "reclamacao",
+        "outro"
+      ],
+      "default": "incidente"
+    },
+    "gravidade": {
+      "type": "string",
+      "enum": [
+        "baixa",
+        "media",
+        "alta",
+        "critica"
+      ],
+      "default": "media"
+    },
+    "data_ocorrencia": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "registrada_por_nome": {
+      "type": "string"
+    },
+    "responsavel_id": {
+      "type": "string",
+      "description": "Colaborador respons\u00e1vel por tratar a ocorr\u00eancia"
+    },
+    "responsavel_nome": {
+      "type": "string"
+    },
+    "tarefa_id": {
+      "type": "string",
+      "description": "Tarefa operacional relacionada, quando aplic\u00e1vel"
+    },
+    "referencia": {
+      "type": "object",
+      "description": "V\u00ednculo opcional a patrim\u00f4nio/frota/OS",
+      "properties": {
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "patrimonio",
+            "frota",
+            "os",
+            "manual"
+          ],
+          "default": "manual"
+        },
+        "referencia_id": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        }
+      }
+    },
+    "acoes": {
+      "type": "array",
+      "description": "A\u00e7\u00f5es tomadas para tratar a ocorr\u00eancia",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descricao": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "fotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberta",
+        "em_tratamento",
+        "resolvida",
+        "cancelada"
+      ],
+      "default": "aberta"
+    },
+    "resolvida_em": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "empresa_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "titulo"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Roda periodicamente e dispara as mensagens agendadas cujo hor\u00e1rio venceu (fila MensagemAgendada).",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "disparo_agendamentos",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "processar_fila": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "processarAgendamentos",
+            "args": {}
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Processar fila de agendamentos",
+            "description": "Dispara os vencidos"
+          }
+        }
+      }
+    ]
+  },
+  "name": "Disparo de Mensagens Agendadas",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "*/15 * * * *",
+      "one_time_date": null,
+      "timezone": "America/Sao_Paulo",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  }
+}

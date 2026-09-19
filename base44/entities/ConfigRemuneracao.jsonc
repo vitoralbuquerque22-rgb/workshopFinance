@@ -1,0 +1,52 @@
+{
+  "name": "ConfigRemuneracao",
+  "type": "object",
+  "properties": {
+    "base_calculo_horas": {
+      "type": "string",
+      "enum": [
+        "horas_vendidas",
+        "horas_apontadas",
+        "horas_padrao",
+        "horas_trabalhadas"
+      ],
+      "default": "horas_apontadas"
+    },
+    "comissao_padrao_mao_obra": {
+      "type": "number",
+      "default": 50
+    },
+    "comissao_padrao_peca": {
+      "type": "number",
+      "default": 0
+    },
+    "peca_gera_comissao_padrao": {
+      "type": "boolean",
+      "default": false
+    },
+    "servico_gera_comissao_padrao": {
+      "type": "boolean",
+      "default": true
+    },
+    "descontar_retrabalho": {
+      "type": "boolean",
+      "default": true
+    },
+    "descontar_retrabalho_interno": {
+      "type": "boolean",
+      "default": true
+    },
+    "descontar_retorno_cliente": {
+      "type": "boolean",
+      "default": false
+    },
+    "aprovacao_obrigatoria": {
+      "type": "boolean",
+      "default": true
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

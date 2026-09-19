@@ -1,0 +1,189 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "cliente_id": {
+      "type": "string"
+    },
+    "cliente_nome": {
+      "type": "string"
+    },
+    "veiculo_id": {
+      "type": "string"
+    },
+    "motorista_id": {
+      "type": "string"
+    },
+    "placa": {
+      "type": "string"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "consultor": {
+      "type": "string"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "gps_vendas",
+        "manual",
+        "indicacao",
+        "whatsapp",
+        "telefone",
+        "site",
+        "passagem",
+        "meta_ads",
+        "google_ads",
+        "instagram",
+        "formulario",
+        "landing_page"
+      ],
+      "default": "manual"
+    },
+    "plataforma": {
+      "type": "string",
+      "enum": [
+        "meta_ads",
+        "google_ads",
+        "instagram",
+        "whatsapp",
+        "site",
+        "indicacao",
+        "outro"
+      ]
+    },
+    "campanha_id": {
+      "type": "string"
+    },
+    "campanha_nome": {
+      "type": "string"
+    },
+    "conjunto_anuncios": {
+      "type": "string"
+    },
+    "anuncio": {
+      "type": "string"
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    },
+    "utm_term": {
+      "type": "string"
+    },
+    "gclid": {
+      "type": "string"
+    },
+    "fbclid": {
+      "type": "string"
+    },
+    "landing_page": {
+      "type": "string"
+    },
+    "url_conversao": {
+      "type": "string"
+    },
+    "dispositivo": {
+      "type": "string"
+    },
+    "navegador": {
+      "type": "string"
+    },
+    "cidade": {
+      "type": "string"
+    },
+    "estado": {
+      "type": "string"
+    },
+    "data_captura": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "primeiro_atendimento_em": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "qualificado": {
+      "type": "boolean",
+      "default": false
+    },
+    "etapa": {
+      "type": "string",
+      "enum": [
+        "novo",
+        "em_contato",
+        "negociacao",
+        "ganho",
+        "perdido"
+      ],
+      "default": "novo"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "novo",
+        "em_contato",
+        "visitou",
+        "convertido",
+        "perdido"
+      ],
+      "default": "novo"
+    },
+    "valor_estimado": {
+      "type": "number",
+      "default": 0
+    },
+    "servico_interesse": {
+      "type": "string"
+    },
+    "motivo_perda": {
+      "type": "string",
+      "enum": [
+        "preco",
+        "prazo",
+        "concorrencia",
+        "desistiu",
+        "sem_retorno",
+        "outro"
+      ]
+    },
+    "motivo_perda_detalhe": {
+      "type": "string"
+    },
+    "data_ganho": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_perda": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "proximo_followup": {
+      "type": "string",
+      "format": "date"
+    },
+    "observacoes": {
+      "type": "string"
+    },
+    "data_contato": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": []
+}

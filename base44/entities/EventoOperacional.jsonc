@@ -1,0 +1,90 @@
+{
+  "name": "EventoOperacional",
+  "type": "object",
+  "properties": {
+    "evento": {
+      "type": "string",
+      "enum": [
+        "os_criada",
+        "os_aprovada",
+        "os_iniciada",
+        "os_finalizada",
+        "atendimento_externo_criado",
+        "ferramenta_retirada",
+        "ferramenta_devolvida",
+        "auditoria_criada",
+        "auditoria_finalizada"
+      ],
+      "description": "Fato operacional que ocorreu e disparou o Motor Operacional"
+    },
+    "origem": {
+      "type": "string",
+      "description": "M\u00f3dulo/servi\u00e7o que emitiu o evento (ex: ordem_servico, patio, patrimonio)"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "ativo_id": {
+      "type": "string",
+      "description": "Patrim\u00f4nio/Ferramenta ou Ativo da Frota relacionado, quando aplic\u00e1vel"
+    },
+    "referencia_id": {
+      "type": "string",
+      "description": "ID gen\u00e9rico do objeto que originou o evento (auditoria, atendimento externo, etc.)"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Dados do evento (cliente_id, veiculo_id, valores, etc.)"
+    },
+    "modulos_atualizados": {
+      "type": "array",
+      "description": "Quais m\u00f3dulos o motor sincronizou em resposta a este evento",
+      "items": {
+        "type": "string",
+        "enum": [
+          "producao",
+          "crm",
+          "agenda",
+          "financeiro",
+          "estoque",
+          "bi",
+          "dashboard"
+        ]
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "processado",
+        "parcial",
+        "falhou"
+      ],
+      "default": "processado"
+    },
+    "erros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ator_id": {
+      "type": "string"
+    },
+    "ator_nome": {
+      "type": "string"
+    },
+    "empresa_id": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "evento"
+  ]
+}

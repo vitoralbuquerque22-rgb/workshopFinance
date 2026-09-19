@@ -1,0 +1,72 @@
+{
+  "name": "AuditoriaConversa",
+  "type": "object",
+  "properties": {
+    "conversa_id": {
+      "type": "string"
+    },
+    "evento": {
+      "type": "string",
+      "enum": [
+        "aprovacao_enviada",
+        "aprovacao_aprovada",
+        "aprovacao_reprovada",
+        "transferencia",
+        "assumiu",
+        "status_alterado",
+        "consultor_alterado",
+        "mensagem_enviada",
+        "ligacao",
+        "whatsapp",
+        "outro"
+      ],
+      "default": "outro"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "ator_id": {
+      "type": "string",
+      "description": "Quem executou a a\u00e7\u00e3o (colaborador/usu\u00e1rio) ou vazio se foi o cliente"
+    },
+    "ator_nome": {
+      "type": "string"
+    },
+    "ator_tipo": {
+      "type": "string",
+      "enum": [
+        "consultor",
+        "cliente",
+        "sistema"
+      ],
+      "default": "consultor"
+    },
+    "de_consultor_id": {
+      "type": "string"
+    },
+    "de_consultor_nome": {
+      "type": "string"
+    },
+    "para_consultor_id": {
+      "type": "string"
+    },
+    "para_consultor_nome": {
+      "type": "string"
+    },
+    "metadados": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "data_evento": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "conversa_id",
+    "evento"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "name": "PedidoCompra",
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "requisicao_id": {
+      "type": "string"
+    },
+    "cotacao_id": {
+      "type": "string"
+    },
+    "fornecedor_id": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "deposito_id": {
+      "type": "string"
+    },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "peca_id": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number"
+          },
+          "quantidade_recebida": {
+            "type": "number",
+            "default": 0
+          },
+          "valor_unitario": {
+            "type": "number"
+          },
+          "valor_total": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "valor_produtos": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_frete": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_total": {
+      "type": "number",
+      "default": 0
+    },
+    "condicao_pagamento": {
+      "type": "string"
+    },
+    "prazo_entrega_dias": {
+      "type": "number",
+      "default": 0
+    },
+    "rateio": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "centro_custo_id": {
+            "type": "string"
+          },
+          "percentual": {
+            "type": "number",
+            "default": 0
+          },
+          "valor": {
+            "type": "number",
+            "default": 0
+          }
+        }
+      }
+    },
+    "recebimentos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "documento": {
+            "type": "string"
+          },
+          "itens": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descricao": {
+                  "type": "string"
+                },
+                "quantidade": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_emissao": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_prevista_entrega": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_recebimento": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberto",
+        "enviado",
+        "recebido_parcial",
+        "recebido",
+        "backorder",
+        "cancelado"
+      ],
+      "default": "aberto"
+    },
+    "conta_pagar_id": {
+      "type": "string"
+    },
+    "nota_fiscal_id": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "fornecedor_id"
+  ]
+}

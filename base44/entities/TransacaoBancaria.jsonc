@@ -1,0 +1,59 @@
+{
+  "name": "TransacaoBancaria",
+  "type": "object",
+  "properties": {
+    "conta_bancaria_id": {
+      "type": "string"
+    },
+    "data": {
+      "type": "string",
+      "format": "date"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "documento": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "credito",
+        "debito"
+      ],
+      "default": "credito"
+    },
+    "valor": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "conciliado",
+        "ignorado"
+      ],
+      "default": "pendente"
+    },
+    "conciliado_tipo": {
+      "type": "string",
+      "enum": [
+        "conta_pagar",
+        "conta_receber",
+        "lancamento_caixa",
+        "manual"
+      ]
+    },
+    "conciliado_id": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "valor"
+  ]
+}

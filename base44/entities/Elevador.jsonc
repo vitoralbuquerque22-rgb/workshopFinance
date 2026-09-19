@@ -1,0 +1,66 @@
+{
+  "name": "Elevador",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "codigo": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "elevador",
+        "box",
+        "rampa",
+        "fosso",
+        "area_externa"
+      ],
+      "default": "elevador"
+    },
+    "capacidade_kg": {
+      "type": "number",
+      "default": 0
+    },
+    "especialidade": {
+      "type": "string",
+      "enum": [
+        "geral",
+        "mecanica",
+        "eletrica",
+        "alinhamento",
+        "funilaria",
+        "pintura",
+        "diesel"
+      ],
+      "default": "geral"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "livre",
+        "ocupado",
+        "manutencao",
+        "inativo"
+      ],
+      "default": "livre"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "tecnico_atual": {
+      "type": "string"
+    },
+    "ocupado_desde": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

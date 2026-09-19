@@ -1,0 +1,66 @@
+{
+  "name": "ConfigNotificacao",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string",
+      "description": "Vazio = configura\u00e7\u00e3o global da oficina"
+    },
+    "notificacoes_ativas": {
+      "type": "boolean",
+      "default": false,
+      "description": "Liga/desliga geral das notifica\u00e7\u00f5es autom\u00e1ticas de etapa da OS"
+    },
+    "etapas_notificaveis": {
+      "type": "array",
+      "description": "Quais etapas do fluxo da OS disparam mensagem autom\u00e1tica ao cliente",
+      "items": {
+        "type": "string",
+        "enum": [
+          "recepcao",
+          "diagnostico",
+          "orcamento",
+          "aprovacao",
+          "compra",
+          "execucao",
+          "qualidade",
+          "aguardando_faturamento",
+          "nota_emitida",
+          "pagamento",
+          "entrega",
+          "pos_venda"
+        ]
+      },
+      "default": [
+        "diagnostico",
+        "execucao",
+        "entrega"
+      ]
+    },
+    "canal_padrao": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "email",
+        "sms"
+      ],
+      "default": "whatsapp"
+    },
+    "templates_etapa": {
+      "type": "array",
+      "description": "Texto/template da mensagem por etapa (usado no envio via WhatsApp oficial)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "etapa": {
+            "type": "string"
+          },
+          "mensagem": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": []
+}

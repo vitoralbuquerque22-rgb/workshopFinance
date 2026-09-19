@@ -1,0 +1,69 @@
+{
+  "name": "Empresa",
+  "type": "object",
+  "properties": {
+    "nome_fantasia": {
+      "type": "string"
+    },
+    "razao_social": {
+      "type": "string"
+    },
+    "cnpj": {
+      "type": "string"
+    },
+    "regime_tributario": {
+      "type": "string",
+      "enum": [
+        "Simples Nacional",
+        "Lucro Presumido",
+        "Lucro Real",
+        "MEI"
+      ]
+    },
+    "aliquota_iss": {
+      "type": "number",
+      "default": 0
+    },
+    "inscricao_municipal": {
+      "type": "string"
+    },
+    "plano": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "Pro",
+        "Enterprise"
+      ],
+      "default": "Pro"
+    },
+    "cor_primaria": {
+      "type": "string",
+      "default": "#1d4ed8"
+    },
+    "logo_url": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "suspenso",
+        "cancelado"
+      ],
+      "default": "ativo"
+    },
+    "endereco": {
+      "type": "string"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "nome_fantasia",
+    "cnpj"
+  ]
+}

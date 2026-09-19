@@ -1,0 +1,56 @@
+{
+  "name": "MovimentoFinanceiro",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "receita",
+        "despesa"
+      ],
+      "default": "receita"
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "dre_grupo": {
+      "type": "string",
+      "enum": [
+        "receita_bruta",
+        "deducoes",
+        "custo_mercadorias",
+        "despesas_operacionais",
+        "despesas_administrativas",
+        "despesas_comerciais",
+        "resultado_financeiro"
+      ]
+    },
+    "dfc_grupo": {
+      "type": "string",
+      "enum": [
+        "operacional",
+        "investimento",
+        "financiamento"
+      ]
+    },
+    "valor": {
+      "type": "number"
+    },
+    "data": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "descricao",
+    "tipo",
+    "valor",
+    "data"
+  ]
+}

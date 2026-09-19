@@ -1,0 +1,45 @@
+{
+  "name": "Caixa",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "usuario_abertura": {
+      "type": "string"
+    },
+    "usuario_fechamento": {
+      "type": "string"
+    },
+    "data_abertura": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_fechamento": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "valor_abertura": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_fechamento": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberto",
+        "fechado"
+      ],
+      "default": "aberto"
+    },
+    "conferencia": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "status"
+  ]
+}

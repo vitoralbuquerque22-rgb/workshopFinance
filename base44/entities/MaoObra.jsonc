@@ -1,0 +1,82 @@
+{
+  "name": "MaoObra",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "mecanica",
+        "eletrica",
+        "funilaria",
+        "pintura",
+        "alinhamento",
+        "diagnostico",
+        "hidraulica",
+        "outros"
+      ],
+      "default": "mecanica"
+    },
+    "tempo_estimado_min": {
+      "type": "number",
+      "default": 0
+    },
+    "tipo_cobranca": {
+      "type": "string",
+      "enum": [
+        "hora",
+        "fixo"
+      ],
+      "default": "fixo"
+    },
+    "valor": {
+      "type": "number"
+    },
+    "valor_hora": {
+      "type": "number",
+      "default": 0
+    },
+    "centro_custo_id": {
+      "type": "string"
+    },
+    "aliquota_iss": {
+      "type": "number",
+      "default": 0
+    },
+    "item_lista_servicos": {
+      "type": "string"
+    },
+    "comissao_modo": {
+      "type": "string",
+      "enum": [
+        "padrao",
+        "sim",
+        "nao",
+        "personalizado"
+      ],
+      "default": "padrao"
+    },
+    "comissao_percentual": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "codigo",
+    "descricao",
+    "tipo_cobranca"
+  ]
+}

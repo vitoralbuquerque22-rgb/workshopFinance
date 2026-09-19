@@ -1,0 +1,80 @@
+{
+  "name": "GpsItemConfig",
+  "type": "object",
+  "properties": {
+    "modelo_id": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "pre_diagnostico",
+        "ppv",
+        "checklist"
+      ]
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "ordem": {
+      "type": "number",
+      "default": 0
+    },
+    "obrigatorio": {
+      "type": "boolean",
+      "default": false
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    },
+    "tipo_resposta": {
+      "type": "string",
+      "enum": [
+        "texto",
+        "sim_nao",
+        "multipla_escolha",
+        "numero",
+        "foto",
+        "video",
+        "audio"
+      ],
+      "default": "texto"
+    },
+    "opcoes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "justificativa": {
+      "type": "string"
+    },
+    "objetivo_comercial": {
+      "type": "string"
+    },
+    "peso": {
+      "type": "number",
+      "default": 0
+    },
+    "tempo_estimado_min": {
+      "type": "number",
+      "default": 0
+    },
+    "responsavel": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "modelo_id",
+    "tipo",
+    "titulo",
+    "tipo_resposta"
+  ]
+}

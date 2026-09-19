@@ -1,0 +1,58 @@
+{
+  "name": "Lote",
+  "type": "object",
+  "properties": {
+    "peca_id": {
+      "type": "string"
+    },
+    "peca_codigo": {
+      "type": "string"
+    },
+    "peca_descricao": {
+      "type": "string"
+    },
+    "deposito_id": {
+      "type": "string"
+    },
+    "numero_lote": {
+      "type": "string"
+    },
+    "quantidade": {
+      "type": "number",
+      "default": 0
+    },
+    "consignado": {
+      "type": "boolean",
+      "default": false
+    },
+    "fornecedor_id": {
+      "type": "string"
+    },
+    "data_fabricacao": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_validade": {
+      "type": "string",
+      "format": "date"
+    },
+    "custo_unitario": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "esgotado",
+        "vencido",
+        "bloqueado"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "peca_id",
+    "numero_lote"
+  ]
+}

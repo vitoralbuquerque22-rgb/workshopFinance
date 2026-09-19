@@ -1,0 +1,92 @@
+{
+  "name": "Requisicao",
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string"
+    },
+    "solicitante": {
+      "type": "string"
+    },
+    "solicitante_id": {
+      "type": "string",
+      "description": "Usu\u00e1rio do sistema que solicitou a compra"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "centro_custo_id": {
+      "type": "string"
+    },
+    "ordem_servico_id": {
+      "type": "string",
+      "description": "OS vinculada \u00e0 solicita\u00e7\u00e3o de compra (rastreamento por atendimento)"
+    },
+    "os_numero": {
+      "type": "string"
+    },
+    "cliente_id": {
+      "type": "string",
+      "description": "Cliente vinculado \u00e0 solicita\u00e7\u00e3o de compra"
+    },
+    "cliente_nome": {
+      "type": "string"
+    },
+    "justificativa": {
+      "type": "string"
+    },
+    "prioridade": {
+      "type": "string",
+      "enum": [
+        "baixa",
+        "media",
+        "alta",
+        "urgente"
+      ],
+      "default": "media"
+    },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "peca_id": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number"
+          },
+          "unidade": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "solicitada",
+        "em_cotacao",
+        "cotada",
+        "aprovada",
+        "reprovada",
+        "convertida",
+        "cancelada"
+      ],
+      "default": "solicitada"
+    },
+    "data_necessidade": {
+      "type": "string",
+      "format": "date"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "itens"
+  ]
+}

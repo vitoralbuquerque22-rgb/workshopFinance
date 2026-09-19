@@ -1,0 +1,47 @@
+{
+  "description": "Fase 4 \u2014 Varre conversas abertas sem OS/venda paradas h\u00e1 mais de 24h e agenda a r\u00e9gua de reengajamento 's\u00f3 perguntou e n\u00e3o comprou'.",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "varredura_so_perguntou",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "varrer_conversas": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "dispararReguas",
+            "args": {
+              "acao": "varrer"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Varrer 's\u00f3 perguntou'",
+            "description": "Agenda reengajamento para conversas paradas sem OS"
+          }
+        }
+      }
+    ]
+  },
+  "name": "Varredura S\u00f3 Perguntou",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 * * * *",
+      "one_time_date": null,
+      "timezone": "America/Sao_Paulo",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  }
+}

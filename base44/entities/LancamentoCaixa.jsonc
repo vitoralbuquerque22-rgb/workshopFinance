@@ -1,0 +1,51 @@
+{
+  "name": "LancamentoCaixa",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "caixa_id": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "entrada",
+        "saida"
+      ],
+      "default": "entrada"
+    },
+    "valor": {
+      "type": "number"
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "forma_pagamento": {
+      "type": "string",
+      "enum": [
+        "pix",
+        "boleto",
+        "cartao",
+        "dinheiro",
+        "transferencia"
+      ]
+    },
+    "data": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "descricao",
+    "tipo",
+    "valor"
+  ]
+}

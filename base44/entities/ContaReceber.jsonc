@@ -1,0 +1,126 @@
+{
+  "name": "ContaReceber",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "cliente": {
+      "type": "string"
+    },
+    "cliente_id": {
+      "type": "string",
+      "description": "V\u00ednculo ao Cliente (para r\u00e9gua personalizada de cobran\u00e7a e agendamentos)"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "nota_fiscal_id": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "centro_custo_id": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "number"
+    },
+    "data_vencimento": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_recebimento": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "recebido",
+        "cancelado"
+      ],
+      "default": "pendente"
+    },
+    "forma_recebimento": {
+      "type": "string",
+      "enum": [
+        "pix",
+        "boleto",
+        "promissoria",
+        "cartao",
+        "dinheiro",
+        "transferencia"
+      ]
+    },
+    "conta_bancaria_id": {
+      "type": "string",
+      "description": "Conta/banco de destino do recebimento (para onde o boleto/pix cai)"
+    },
+    "cobranca_agendada": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se a cad\u00eancia de cobran\u00e7a autom\u00e1tica j\u00e1 foi enfileirada para esta conta"
+    },
+    "boleto": {
+      "type": "object",
+      "description": "Dados do boleto/pix gerados pelo provedor de pagamento (Asaas, etc). Preenchido quando o boleto \u00e9 emitido.",
+      "properties": {
+        "id_externo": {
+          "type": "string",
+          "description": "ID da cobran\u00e7a no provedor de pagamento"
+        },
+        "linha_digitavel": {
+          "type": "string"
+        },
+        "codigo_barras": {
+          "type": "string"
+        },
+        "url_boleto": {
+          "type": "string",
+          "description": "URL do PDF/fatura do boleto"
+        },
+        "pix_copia_cola": {
+          "type": "string",
+          "description": "Payload Pix copia-e-cola"
+        },
+        "pix_qr_url": {
+          "type": "string"
+        },
+        "provedor": {
+          "type": "string"
+        },
+        "status_externo": {
+          "type": "string",
+          "description": "Status retornado pelo provedor (PENDING, RECEIVED, etc)"
+        },
+        "gerado_em": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "os",
+        "venda",
+        "manual"
+      ],
+      "default": "manual"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "descricao",
+    "valor",
+    "data_vencimento"
+  ]
+}

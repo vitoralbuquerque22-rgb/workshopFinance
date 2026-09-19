@@ -1,0 +1,59 @@
+{
+  "name": "PlanoConta",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "receita",
+        "despesa",
+        "custo",
+        "ativo",
+        "passivo",
+        "patrimonio"
+      ],
+      "default": "despesa"
+    },
+    "natureza": {
+      "type": "string",
+      "enum": [
+        "sintetica",
+        "analitica"
+      ],
+      "default": "analitica"
+    },
+    "pai_id": {
+      "type": "string"
+    },
+    "dre_grupo": {
+      "type": "string",
+      "enum": [
+        "receita_bruta",
+        "deducoes",
+        "custo_mercadorias",
+        "despesas_operacionais",
+        "despesas_administrativas",
+        "despesas_comerciais",
+        "resultado_financeiro"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "codigo",
+    "nome"
+  ]
+}

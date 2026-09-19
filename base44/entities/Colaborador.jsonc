@@ -1,0 +1,106 @@
+{
+  "name": "Colaborador",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "cpf": {
+      "type": "string"
+    },
+    "cargo_id": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "funcao": {
+      "type": "string",
+      "enum": [
+        "tecnico",
+        "consultor",
+        "gestor",
+        "administrativo",
+        "outros"
+      ],
+      "default": "tecnico"
+    },
+    "tipo_contratacao": {
+      "type": "string",
+      "enum": [
+        "clt",
+        "pj",
+        "comissionado",
+        "autonomo",
+        "horista"
+      ],
+      "default": "clt"
+    },
+    "modelo_remuneracao": {
+      "type": "string",
+      "enum": [
+        "salario",
+        "comissao",
+        "salario_comissao",
+        "salario_bonificacao",
+        "comissao_bonificacao",
+        "personalizado"
+      ],
+      "default": "salario"
+    },
+    "salario_base": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_hora": {
+      "type": "number",
+      "default": 0
+    },
+    "meta_horas_mensal": {
+      "type": "number",
+      "default": 0
+    },
+    "meta_faturamento_mensal": {
+      "type": "number",
+      "default": 0
+    },
+    "regra_comissao_id": {
+      "type": "string"
+    },
+    "comissao_percentual_padrao": {
+      "type": "number",
+      "default": 0
+    },
+    "descontos_fixos": {
+      "type": "number",
+      "default": 0
+    },
+    "observacoes": {
+      "type": "string"
+    },
+    "data_admissao": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

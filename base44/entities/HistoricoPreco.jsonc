@@ -1,0 +1,49 @@
+{
+  "name": "HistoricoPreco",
+  "type": "object",
+  "properties": {
+    "peca_id": {
+      "type": "string"
+    },
+    "peca_codigo": {
+      "type": "string"
+    },
+    "peca_descricao": {
+      "type": "string"
+    },
+    "fornecedor_id": {
+      "type": "string"
+    },
+    "fornecedor_nome": {
+      "type": "string"
+    },
+    "valor_unitario": {
+      "type": "number",
+      "default": 0
+    },
+    "quantidade": {
+      "type": "number",
+      "default": 0
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "cotacao",
+        "pedido",
+        "recebimento",
+        "nfe"
+      ],
+      "default": "pedido"
+    },
+    "documento": {
+      "type": "string"
+    },
+    "data": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "peca_id"
+  ]
+}

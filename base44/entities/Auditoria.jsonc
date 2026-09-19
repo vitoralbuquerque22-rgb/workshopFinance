@@ -1,0 +1,191 @@
+{
+  "name": "Auditoria",
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string",
+      "description": "N\u00famero sequencial da auditoria (ex: AUD-000045)"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "ferramentas",
+        "pecas",
+        "patrimonio",
+        "epis",
+        "equipamentos"
+      ],
+      "default": "ferramentas",
+      "description": "Categoria de material auditado (Fase 6)"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "atendimento_externo",
+        "os"
+      ],
+      "default": "manual",
+      "description": "De onde a auditoria foi originada"
+    },
+    "missao_operacional_id": {
+      "type": "string",
+      "description": "Atendimento externo (MissaoOperacional) que originou a auditoria autom\u00e1tica"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "referencia_numero": {
+      "type": "string",
+      "description": "N\u00famero do documento de origem (AE ou OS)"
+    },
+    "responsavel_id": {
+      "type": "string",
+      "description": "Colaborador respons\u00e1vel por conferir/aprovar a auditoria"
+    },
+    "responsavel_nome": {
+      "type": "string"
+    },
+    "responsavel_email": {
+      "type": "string"
+    },
+    "itens": {
+      "type": "array",
+      "description": "Materiais conferidos na auditoria",
+      "items": {
+        "type": "object",
+        "properties": {
+          "referencia_id": {
+            "type": "string",
+            "description": "ID do Patrimonio ou Peca conferido, quando aplic\u00e1vel"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "codigo": {
+            "type": "string",
+            "description": "C\u00f3digo patrimonial ou c\u00f3digo da pe\u00e7a"
+          },
+          "quantidade_esperada": {
+            "type": "number",
+            "default": 0
+          },
+          "quantidade_conferida": {
+            "type": "number",
+            "default": 0
+          },
+          "situacao": {
+            "type": "string",
+            "enum": [
+              "pendente",
+              "ok",
+              "divergente",
+              "faltante",
+              "danificado"
+            ],
+            "default": "pendente"
+          },
+          "observacao": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "fotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pendencias": {
+      "type": "array",
+      "description": "Pend\u00eancias abertas durante a confer\u00eancia",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descricao": {
+            "type": "string"
+          },
+          "resolvida": {
+            "type": "boolean",
+            "default": false
+          },
+          "criada_em": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberta",
+        "em_conferencia",
+        "aguardando_aprovacao",
+        "aprovada",
+        "reprovada"
+      ],
+      "default": "aberta"
+    },
+    "aprovada_por_id": {
+      "type": "string"
+    },
+    "aprovada_por_nome": {
+      "type": "string"
+    },
+    "aprovada_em": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "motivo_reprovacao": {
+      "type": "string"
+    },
+    "estoque_atualizado": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se a baixa/ajuste de estoque j\u00e1 foi aplicado na aprova\u00e7\u00e3o"
+    },
+    "patrimonio_atualizado": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se o status dos patrim\u00f4nios j\u00e1 foi atualizado na aprova\u00e7\u00e3o"
+    },
+    "historico": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "empresa_id": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "tipo"
+  ]
+}

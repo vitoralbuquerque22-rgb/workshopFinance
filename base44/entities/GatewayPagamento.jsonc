@@ -1,0 +1,117 @@
+{
+  "name": "GatewayPagamento",
+  "type": "object",
+  "properties": {
+    "provedor": {
+      "type": "string",
+      "enum": [
+        "asaas",
+        "mercado_pago",
+        "banco_inter",
+        "gerencianet",
+        "outro"
+      ],
+      "default": "asaas",
+      "description": "Provedor/gateway de pagamento usado para gerar boletos, PIX e cobran\u00e7as com split"
+    },
+    "nome_exibicao": {
+      "type": "string",
+      "description": "R\u00f3tulo amig\u00e1vel (ex: Asaas Oficina Centro)"
+    },
+    "ambiente": {
+      "type": "string",
+      "enum": [
+        "homologacao",
+        "producao"
+      ],
+      "default": "homologacao"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    },
+    "api_key": {
+      "type": "string",
+      "description": "Chave/token de API do provedor de pagamento"
+    },
+    "client_id": {
+      "type": "string",
+      "description": "Client ID (quando o provedor usa OAuth, ex: Banco Inter / Gerencianet)"
+    },
+    "client_secret": {
+      "type": "string",
+      "description": "Client Secret (quando aplic\u00e1vel)"
+    },
+    "carteira": {
+      "type": "string",
+      "description": "C\u00f3digo da carteira/conv\u00eanio de cobran\u00e7a"
+    },
+    "conta_bancaria_id": {
+      "type": "string",
+      "description": "Conta banc\u00e1ria do sistema onde os recebimentos deste gateway s\u00e3o conciliados"
+    },
+    "webhook_url": {
+      "type": "string",
+      "description": "URL de webhook cadastrada no provedor para receber notifica\u00e7\u00f5es de pagamento"
+    },
+    "webhook_secret": {
+      "type": "string",
+      "description": "Token secreto gerado pelo sistema para validar as chamadas do webhook de pagamento (enviado como ?secret= na URL cadastrada no provedor)"
+    },
+    "split": {
+      "type": "object",
+      "description": "Configura\u00e7\u00e3o de split (marketplace) \u2014 usada quando o provedor \u00e9 Mercado Pago. Permite dividir uma cobran\u00e7a \u00fanica entre os recebedores (CNPJs).",
+      "properties": {
+        "habilitado": {
+          "type": "boolean",
+          "default": false,
+          "description": "Se este gateway opera como marketplace (divide a cobran\u00e7a entre recebedores)"
+        },
+        "modalidade": {
+          "type": "string",
+          "enum": [
+            "link",
+            "qr_checkout",
+            "qr_point"
+          ],
+          "default": "link",
+          "description": "link = link de pagamento (Checkout Pro). qr_checkout = QR din\u00e2mico do Checkout. qr_point = QR na maquininha Point."
+        },
+        "marketplace_id": {
+          "type": "string",
+          "description": "Application ID do marketplace no Mercado Pago (dono do split)"
+        },
+        "taxa_marketplace_percentual": {
+          "type": "number",
+          "default": 0,
+          "description": "Percentual retido pelo marketplace (comiss\u00e3o) antes do split entre os CNPJs"
+        },
+        "point_device_id": {
+          "type": "string",
+          "description": "ID do dispositivo Point (maquininha) para modalidade qr_point"
+        }
+      }
+    },
+    "juros_mes": {
+      "type": "number",
+      "default": 0,
+      "description": "Percentual de juros ao m\u00eas aplicado ap\u00f3s o vencimento"
+    },
+    "multa_percentual": {
+      "type": "number",
+      "default": 0,
+      "description": "Percentual de multa por atraso"
+    },
+    "dias_vencimento_padrao": {
+      "type": "number",
+      "default": 3,
+      "description": "Prazo padr\u00e3o (dias) para vencimento do boleto quando n\u00e3o informado"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "provedor"
+  ]
+}

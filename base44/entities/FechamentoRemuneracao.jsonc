@@ -1,0 +1,116 @@
+{
+  "name": "FechamentoRemuneracao",
+  "type": "object",
+  "properties": {
+    "colaborador_id": {
+      "type": "string"
+    },
+    "colaborador_nome": {
+      "type": "string"
+    },
+    "competencia": {
+      "type": "string"
+    },
+    "data_inicio": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_fim": {
+      "type": "string",
+      "format": "date"
+    },
+    "salario_base": {
+      "type": "number",
+      "default": 0
+    },
+    "comissao_total": {
+      "type": "number",
+      "default": 0
+    },
+    "bonificacao_total": {
+      "type": "number",
+      "default": 0
+    },
+    "descontos": {
+      "type": "number",
+      "default": 0
+    },
+    "total_liquido": {
+      "type": "number",
+      "default": 0
+    },
+    "horas_produzidas": {
+      "type": "number",
+      "default": 0
+    },
+    "horas_vendidas": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_produzido": {
+      "type": "number",
+      "default": 0
+    },
+    "detalhamento": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ordem_servico_id": {
+            "type": "string"
+          },
+          "os_numero": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "base_calculo": {
+            "type": "number",
+            "default": 0
+          },
+          "percentual": {
+            "type": "number",
+            "default": 0
+          },
+          "valor_comissao": {
+            "type": "number",
+            "default": 0
+          }
+        }
+      }
+    },
+    "snapshot_regras": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "rascunho",
+        "aguardando_aprovacao",
+        "aprovado",
+        "pago",
+        "rejeitado"
+      ],
+      "default": "rascunho"
+    },
+    "aprovado_por": {
+      "type": "string"
+    },
+    "data_aprovacao": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "conta_pagar_id": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "colaborador_id",
+    "competencia"
+  ]
+}

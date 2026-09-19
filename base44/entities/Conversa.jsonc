@@ -1,0 +1,131 @@
+{
+  "name": "Conversa",
+  "type": "object",
+  "properties": {
+    "canal": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "instagram",
+        "messenger",
+        "email",
+        "site",
+        "telegram",
+        "sms",
+        "google_business",
+        "interno"
+      ],
+      "default": "whatsapp"
+    },
+    "canal_externo_id": {
+      "type": "string",
+      "description": "Identificador da conversa/thread no provedor externo (ex: wa_id, thread do Direct)"
+    },
+    "contato_nome": {
+      "type": "string"
+    },
+    "contato_telefone": {
+      "type": "string"
+    },
+    "contato_email": {
+      "type": "string"
+    },
+    "contato_identificador": {
+      "type": "string",
+      "description": "Handle/ID do contato no canal quando n\u00e3o h\u00e1 telefone (ex: @instagram, id do Messenger)"
+    },
+    "cliente_id": {
+      "type": "string"
+    },
+    "veiculo_id": {
+      "type": "string"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "lead_id": {
+      "type": "string"
+    },
+    "consultor_id": {
+      "type": "string"
+    },
+    "consultor_nome": {
+      "type": "string"
+    },
+    "identificacao_status": {
+      "type": "string",
+      "enum": [
+        "identificado",
+        "nao_identificado",
+        "lead_criado"
+      ],
+      "default": "nao_identificado"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberta",
+        "aguardando_cliente",
+        "aguardando_consultor",
+        "resolvida",
+        "arquivada"
+      ],
+      "default": "aberta"
+    },
+    "ultima_mensagem_texto": {
+      "type": "string"
+    },
+    "ultima_mensagem_em": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ultima_mensagem_direcao": {
+      "type": "string",
+      "enum": [
+        "entrada",
+        "saida"
+      ]
+    },
+    "nao_lidas": {
+      "type": "number",
+      "default": 0
+    },
+    "atendimentos": {
+      "type": "array",
+      "description": "Hist\u00f3rico de quem atendeu / transfer\u00eancias",
+      "items": {
+        "type": "object",
+        "properties": {
+          "consultor_id": {
+            "type": "string"
+          },
+          "consultor_nome": {
+            "type": "string"
+          },
+          "acao": {
+            "type": "string",
+            "enum": [
+              "assumiu",
+              "transferido",
+              "finalizado",
+              "reaberto"
+            ]
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "canal"
+  ]
+}

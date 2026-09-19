@@ -1,0 +1,73 @@
+{
+  "name": "MovimentoEstoque",
+  "type": "object",
+  "properties": {
+    "peca_id": {
+      "type": "string"
+    },
+    "peca_codigo": {
+      "type": "string"
+    },
+    "peca_descricao": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "entrada",
+        "saida",
+        "transferencia",
+        "ajuste_inventario",
+        "reserva",
+        "liberacao_reserva"
+      ],
+      "default": "entrada"
+    },
+    "quantidade": {
+      "type": "number",
+      "default": 0
+    },
+    "deposito_origem_id": {
+      "type": "string"
+    },
+    "deposito_destino_id": {
+      "type": "string"
+    },
+    "lote_id": {
+      "type": "string"
+    },
+    "numero_lote": {
+      "type": "string"
+    },
+    "custo_unitario": {
+      "type": "number",
+      "default": 0
+    },
+    "documento": {
+      "type": "string"
+    },
+    "motivo": {
+      "type": "string"
+    },
+    "usuario": {
+      "type": "string"
+    },
+    "saldo_anterior": {
+      "type": "number",
+      "default": 0
+    },
+    "saldo_novo": {
+      "type": "number",
+      "default": 0
+    },
+    "data": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "peca_id",
+    "tipo",
+    "quantidade"
+  ]
+}

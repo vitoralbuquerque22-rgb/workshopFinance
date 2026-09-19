@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Empresa {
+  id        String   @id @default(uuid()) @db.Uuid
+  nome      String   @db.VarChar(255)
+  documento String   @unique @db.VarChar(14)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users     User[]
+  outboxes  EventOutbox[]
+  idempotencies IdempotencyRecord[]
+
+  @@map("empresa")
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  empresaId String   @db.Uuid @map("empresa_id")
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255) // Hash
+  role      String   @default("USER") @db.VarChar(50)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  empresa   Empresa  @relation(fields: [empresaId], references: [id], onDelete: Cascade)
+
+  @@index([empresaId])
+  @@map("user")
+}
+
+model EventOutbox {
+  id            String   @id @default(uuid()) @db.Uuid
+  tenantId      String   @db.Uuid @map("tenant_id")
+  eventType     String   @db.VarChar(100) @map("event_type")
+  aggregateType String   @db.VarChar(100) @map("aggregate_type")
+  aggregateId   String   @db.Uuid @map("aggregate_id")
+  payload       Json     @db.JsonB
+  status        String   @default("PENDING") @db.VarChar(20) // PENDING, PROCESSING, PROCESSED, FAILED
+  correlationId String?  @db.Uuid @map("correlation_id")
+  causationId   String?  @db.Uuid @map("causation_id")
+  error         String?  @db.Text
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  empresa       Empresa  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([status, createdAt])
+  @@index([tenantId])
+  @@map("event_outbox")
+}
+
+model IdempotencyRecord {
+  idempotencyKey String   @id @db.VarChar(255) @map("idempotency_key")
+  tenantId       String   @db.Uuid @map("tenant_id")
+  operation      String   @db.VarChar(100)
+  status         String   @db.VarChar(20) // PENDING, COMPLETED, FAILED
+  responseBody   Json?    @db.JsonB @map("response_body")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  expiresAt      DateTime? @map("expires_at")
+
+  empresa        Empresa  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@map("idempotency_record")
+}

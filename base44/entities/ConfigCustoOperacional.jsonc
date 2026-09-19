@@ -1,0 +1,52 @@
+{
+  "name": "ConfigCustoOperacional",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string",
+      "description": "Vazio = configura\u00e7\u00e3o global da oficina. Preenchido = custos espec\u00edficos da filial (sobrep\u00f5e a global)."
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    },
+    "valor_km": {
+      "type": "number",
+      "default": 0,
+      "description": "Custo por quil\u00f4metro rodado (combust\u00edvel + desgaste do ve\u00edculo)"
+    },
+    "valor_hora": {
+      "type": "number",
+      "default": 0,
+      "description": "Custo por hora de m\u00e3o de obra da equipe em campo"
+    },
+    "valor_pedagio": {
+      "type": "number",
+      "default": 0,
+      "description": "Valor padr\u00e3o de ped\u00e1gio por atendimento (pode ser ajustado por miss\u00e3o)"
+    },
+    "valor_alimentacao": {
+      "type": "number",
+      "default": 0,
+      "description": "Valor padr\u00e3o de alimenta\u00e7\u00e3o por atendimento"
+    },
+    "valor_hospedagem": {
+      "type": "number",
+      "default": 0,
+      "description": "Valor padr\u00e3o de hospedagem por atendimento (quando pernoite)"
+    },
+    "gerar_conta_pagar": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se true, ao calcular os custos da miss\u00e3o gera automaticamente uma Conta a Pagar do custo operacional"
+    },
+    "centro_custo_id": {
+      "type": "string",
+      "description": "Centro de custo padr\u00e3o usado no lan\u00e7amento financeiro dos custos operacionais"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

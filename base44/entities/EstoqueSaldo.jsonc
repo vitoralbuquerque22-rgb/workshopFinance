@@ -1,0 +1,33 @@
+{
+  "name": "EstoqueSaldo",
+  "type": "object",
+  "properties": {
+    "peca_id": {
+      "type": "string"
+    },
+    "peca_codigo": {
+      "type": "string"
+    },
+    "peca_descricao": {
+      "type": "string"
+    },
+    "deposito_id": {
+      "type": "string"
+    },
+    "deposito_nome": {
+      "type": "string"
+    },
+    "quantidade": {
+      "type": "number",
+      "default": 0
+    },
+    "quantidade_reservada": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "peca_id",
+    "deposito_id"
+  ]
+}

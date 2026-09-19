@@ -1,0 +1,250 @@
+{
+  "name": "NotaFiscal",
+  "type": "object",
+  "properties": {
+    "chave_acesso": {
+      "type": "string"
+    },
+    "numero": {
+      "type": "string"
+    },
+    "serie": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "entrada",
+        "saida"
+      ],
+      "default": "entrada"
+    },
+    "emitente_cnpj": {
+      "type": "string"
+    },
+    "emitente_nome": {
+      "type": "string"
+    },
+    "destinatario_cnpj": {
+      "type": "string"
+    },
+    "destinatario_nome": {
+      "type": "string"
+    },
+    "destinatario_endereco": {
+      "type": "string"
+    },
+    "cliente_id": {
+      "type": "string"
+    },
+    "veiculo_id": {
+      "type": "string"
+    },
+    "ordem_servico_id": {
+      "type": "string"
+    },
+    "natureza_operacao": {
+      "type": "string"
+    },
+    "cfop": {
+      "type": "string"
+    },
+    "valor_produtos": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_servicos": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_desconto": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_total": {
+      "type": "number"
+    },
+    "valor_tributos": {
+      "type": "number",
+      "default": 0
+    },
+    "tributos_detalhe": {
+      "type": "object",
+      "properties": {
+        "icms": {
+          "type": "number",
+          "default": 0
+        },
+        "iss": {
+          "type": "number",
+          "default": 0
+        },
+        "pis": {
+          "type": "number",
+          "default": 0
+        },
+        "cofins": {
+          "type": "number",
+          "default": 0
+        },
+        "ipi": {
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "data_emissao": {
+      "type": "string",
+      "format": "date"
+    },
+    "xml_original": {
+      "type": "string"
+    },
+    "xml_url": {
+      "type": "string"
+    },
+    "pdf_url": {
+      "type": "string"
+    },
+    "protocolo": {
+      "type": "string"
+    },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "peca",
+              "servico"
+            ],
+            "default": "peca"
+          },
+          "peca_id": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number"
+          },
+          "quantidade_recebida": {
+            "type": "number"
+          },
+          "unidade": {
+            "type": "string"
+          },
+          "valor_unitario": {
+            "type": "number"
+          },
+          "valor_total": {
+            "type": "number"
+          },
+          "custo_unitario": {
+            "type": "number",
+            "default": 0
+          }
+        }
+      }
+    },
+    "forma_pagamento": {
+      "type": "string",
+      "enum": [
+        "pix",
+        "cartao",
+        "boleto",
+        "dinheiro",
+        "transferencia",
+        "parcelado"
+      ]
+    },
+    "numero_parcelas": {
+      "type": "number",
+      "default": 1
+    },
+    "pedido_compra_id": {
+      "type": "string"
+    },
+    "contas_pagar_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contas_receber_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fornecedor_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aguardando_conferencia",
+        "processada",
+        "rascunho",
+        "autorizada",
+        "cancelada",
+        "erro",
+        "duplicada"
+      ],
+      "default": "aguardando_conferencia"
+    },
+    "recebimento_completo": {
+      "type": "boolean",
+      "default": true
+    },
+    "motivo_cancelamento": {
+      "type": "string"
+    },
+    "data_cancelamento": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "historico": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "acao": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "erro_detalhe": {
+      "type": "string"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "webhook",
+        "manual",
+        "os"
+      ],
+      "default": "webhook"
+    }
+  },
+  "required": [
+    "tipo"
+  ]
+}

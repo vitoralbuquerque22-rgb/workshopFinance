@@ -1,0 +1,185 @@
+{
+  "name": "Patrimonio",
+  "type": "object",
+  "properties": {
+    "codigo_patrimonial": {
+      "type": "string",
+      "description": "C\u00f3digo patrimonial \u00fanico gerado automaticamente (ex: PAT-000123)"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "ferramenta",
+        "equipamento",
+        "maquina",
+        "notebook",
+        "scanner",
+        "epi",
+        "mobiliario",
+        "outro"
+      ],
+      "default": "ferramenta",
+      "description": "Tipo do patrim\u00f4nio. 'ferramenta' e 'equipamento' alimentam as telas dedicadas."
+    },
+    "categoria": {
+      "type": "string",
+      "description": "Categoria livre para agrupamento (ex: El\u00e9trica, Pneum\u00e1tica, Diagn\u00f3stico)"
+    },
+    "marca": {
+      "type": "string"
+    },
+    "modelo": {
+      "type": "string"
+    },
+    "numero_serie": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "responsavel_id": {
+      "type": "string",
+      "description": "Colaborador respons\u00e1vel pelo patrim\u00f4nio"
+    },
+    "responsavel_nome": {
+      "type": "string"
+    },
+    "localizacao": {
+      "type": "string",
+      "description": "Local f\u00edsico onde o patrim\u00f4nio fica (ex: Bancada 2, Almoxarifado)"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "valor_compra": {
+      "type": "number",
+      "default": 0
+    },
+    "data_compra": {
+      "type": "string",
+      "format": "date"
+    },
+    "fornecedor_id": {
+      "type": "string"
+    },
+    "vida_util_meses": {
+      "type": "number",
+      "default": 0,
+      "description": "Vida \u00fatil em meses para c\u00e1lculo de deprecia\u00e7\u00e3o linear"
+    },
+    "valor_residual": {
+      "type": "number",
+      "default": 0,
+      "description": "Valor residual estimado ao fim da vida \u00fatil"
+    },
+    "manutencao_preventiva": {
+      "type": "object",
+      "description": "Configura\u00e7\u00e3o de manuten\u00e7\u00e3o preventiva recorrente",
+      "properties": {
+        "ativa": {
+          "type": "boolean",
+          "default": false
+        },
+        "intervalo_dias": {
+          "type": "number",
+          "default": 0,
+          "description": "Periodicidade em dias entre manuten\u00e7\u00f5es preventivas"
+        },
+        "ultima_em": {
+          "type": "string",
+          "format": "date"
+        },
+        "proxima_em": {
+          "type": "string",
+          "format": "date",
+          "description": "Data da pr\u00f3xima manuten\u00e7\u00e3o preventiva (calculada a partir da \u00faltima + intervalo)"
+        },
+        "responsavel": {
+          "type": "string"
+        }
+      }
+    },
+    "historico": {
+      "type": "array",
+      "description": "Hist\u00f3rico de eventos e movimenta\u00e7\u00f5es do patrim\u00f4nio",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "cadastro",
+              "movimentacao",
+              "manutencao",
+              "responsavel",
+              "status",
+              "auditoria",
+              "observacao"
+            ],
+            "default": "observacao"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "de": {
+            "type": "string",
+            "description": "Valor anterior (local/respons\u00e1vel anterior, quando aplic\u00e1vel)"
+          },
+          "para": {
+            "type": "string",
+            "description": "Valor novo"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "fotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "documentos": {
+      "type": "array",
+      "description": "Notas fiscais, manuais, certificados etc.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "em_manutencao",
+        "emprestado",
+        "baixado",
+        "extraviado"
+      ],
+      "default": "ativo"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "nome",
+    "tipo"
+  ]
+}

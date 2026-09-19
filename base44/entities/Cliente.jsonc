@@ -1,0 +1,139 @@
+{
+  "name": "Cliente",
+  "type": "object",
+  "properties": {
+    "tipo_pessoa": {
+      "type": "string",
+      "enum": [
+        "fisica",
+        "juridica"
+      ],
+      "default": "fisica"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "cpf": {
+      "type": "string"
+    },
+    "cnpj": {
+      "type": "string"
+    },
+    "razao_social": {
+      "type": "string"
+    },
+    "nome_fantasia": {
+      "type": "string"
+    },
+    "inscricao_estadual": {
+      "type": "string"
+    },
+    "data_nascimento": {
+      "type": "string"
+    },
+    "nome_mae": {
+      "type": "string"
+    },
+    "situacao_cadastral": {
+      "type": "string"
+    },
+    "cnae_principal": {
+      "type": "string"
+    },
+    "cnaes_secundarios": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "socios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "qualificacao": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tipo_cliente": {
+      "type": "string",
+      "enum": [
+        "particular",
+        "frotista",
+        "empresa"
+      ],
+      "default": "particular"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "celular": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "cep": {
+      "type": "string"
+    },
+    "logradouro": {
+      "type": "string"
+    },
+    "numero": {
+      "type": "string"
+    },
+    "complemento": {
+      "type": "string"
+    },
+    "bairro": {
+      "type": "string"
+    },
+    "cidade": {
+      "type": "string"
+    },
+    "uf": {
+      "type": "string"
+    },
+    "endereco": {
+      "type": "string"
+    },
+    "aceita_notificacoes": {
+      "type": "boolean",
+      "default": true,
+      "description": "Consentimento do cliente para receber notifica\u00e7\u00f5es autom\u00e1ticas (opt-out por cliente)"
+    },
+    "origem_dados": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "consulta_cpf",
+        "consulta_cnpj"
+      ],
+      "default": "manual"
+    },
+    "ultima_consulta_em": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "observacoes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "nome",
+    "tipo_pessoa"
+  ]
+}

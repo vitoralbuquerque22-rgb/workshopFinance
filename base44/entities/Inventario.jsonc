@@ -1,0 +1,71 @@
+{
+  "name": "Inventario",
+  "type": "object",
+  "properties": {
+    "descricao": {
+      "type": "string"
+    },
+    "deposito_id": {
+      "type": "string"
+    },
+    "deposito_nome": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberto",
+        "em_contagem",
+        "finalizado",
+        "cancelado"
+      ],
+      "default": "aberto"
+    },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "peca_id": {
+            "type": "string"
+          },
+          "peca_codigo": {
+            "type": "string"
+          },
+          "peca_descricao": {
+            "type": "string"
+          },
+          "saldo_sistema": {
+            "type": "number",
+            "default": 0
+          },
+          "saldo_contado": {
+            "type": "number"
+          },
+          "diferenca": {
+            "type": "number",
+            "default": 0
+          },
+          "contado": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "responsavel": {
+      "type": "string"
+    },
+    "data_inicio": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_finalizacao": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "descricao"
+  ]
+}

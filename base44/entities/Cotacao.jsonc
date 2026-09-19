@@ -1,0 +1,119 @@
+{
+  "name": "Cotacao",
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string"
+    },
+    "requisicao_id": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "peca_id": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number"
+          },
+          "unidade": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "propostas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fornecedor_id": {
+            "type": "string"
+          },
+          "fornecedor_nome": {
+            "type": "string"
+          },
+          "frete": {
+            "type": "number",
+            "default": 0
+          },
+          "prazo_entrega_dias": {
+            "type": "number",
+            "default": 0
+          },
+          "condicao_pagamento": {
+            "type": "string"
+          },
+          "validade": {
+            "type": "string",
+            "format": "date"
+          },
+          "itens": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descricao": {
+                  "type": "string"
+                },
+                "quantidade": {
+                  "type": "number"
+                },
+                "valor_unitario": {
+                  "type": "number",
+                  "default": 0
+                },
+                "disponivel": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          },
+          "subtotal": {
+            "type": "number",
+            "default": 0
+          },
+          "total": {
+            "type": "number",
+            "default": 0
+          },
+          "vencedora": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "fornecedor_vencedor_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberta",
+        "respondida",
+        "aprovada",
+        "reprovada",
+        "convertida",
+        "cancelada"
+      ],
+      "default": "aberta"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "itens"
+  ]
+}

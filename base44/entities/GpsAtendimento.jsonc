@@ -1,0 +1,131 @@
+{
+  "name": "GpsAtendimento",
+  "type": "object",
+  "properties": {
+    "modelo_id": {
+      "type": "string"
+    },
+    "modelo_nome": {
+      "type": "string"
+    },
+    "modelo_versao": {
+      "type": "number"
+    },
+    "os_id": {
+      "type": "string"
+    },
+    "cliente_id": {
+      "type": "string"
+    },
+    "veiculo_id": {
+      "type": "string"
+    },
+    "lead_id": {
+      "type": "string"
+    },
+    "consultor": {
+      "type": "string"
+    },
+    "placa": {
+      "type": "string"
+    },
+    "combustivel_nivel": {
+      "type": "string",
+      "enum": [
+        "reserva",
+        "um_quarto",
+        "meio",
+        "tres_quartos",
+        "cheio"
+      ]
+    },
+    "quilometragem": {
+      "type": "number"
+    },
+    "codigos_falha": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "observacoes_gerais": {
+      "type": "string"
+    },
+    "respostas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item_id": {
+            "type": "string"
+          },
+          "tipo": {
+            "type": "string"
+          },
+          "categoria": {
+            "type": "string"
+          },
+          "pergunta": {
+            "type": "string"
+          },
+          "resposta": {
+            "type": "string"
+          },
+          "anexos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "atencao",
+              "necessita_reparo",
+              "nao_aplicavel"
+            ]
+          },
+          "observacao": {
+            "type": "string"
+          },
+          "valor_estimado": {
+            "type": "number"
+          },
+          "prioridade": {
+            "type": "string",
+            "enum": [
+              "urgente",
+              "pode_esperar",
+              "preventivo"
+            ]
+          }
+        }
+      }
+    },
+    "ai_analise": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "em_andamento",
+        "concluido",
+        "cancelado"
+      ],
+      "default": "em_andamento"
+    },
+    "data_inicio": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_conclusao": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "modelo_id",
+    "consultor"
+  ]
+}

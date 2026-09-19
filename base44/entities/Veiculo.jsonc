@@ -1,0 +1,117 @@
+{
+  "name": "Veiculo",
+  "type": "object",
+  "properties": {
+    "cliente_id": {
+      "type": "string"
+    },
+    "placa": {
+      "type": "string"
+    },
+    "renavam": {
+      "type": "string"
+    },
+    "marca": {
+      "type": "string"
+    },
+    "modelo": {
+      "type": "string"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "ano": {
+      "type": "number"
+    },
+    "ano_modelo": {
+      "type": "number"
+    },
+    "motorizacao": {
+      "type": "string"
+    },
+    "cor": {
+      "type": "string"
+    },
+    "chassi": {
+      "type": "string"
+    },
+    "combustivel": {
+      "type": "string",
+      "enum": [
+        "gasolina",
+        "etanol",
+        "flex",
+        "diesel",
+        "eletrico",
+        "hibrido",
+        "gnv"
+      ]
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "municipio": {
+      "type": "string"
+    },
+    "uf": {
+      "type": "string"
+    },
+    "situacao": {
+      "type": "string"
+    },
+    "quilometragem": {
+      "type": "number",
+      "default": 0
+    },
+    "proprietario_nome": {
+      "type": "string"
+    },
+    "proprietario_documento": {
+      "type": "string"
+    },
+    "origem_dados": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "consulta_placa"
+      ],
+      "default": "manual"
+    },
+    "historico_clientes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cliente_id": {
+            "type": "string"
+          },
+          "cliente_nome": {
+            "type": "string"
+          },
+          "vinculado_em": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "desvinculado_em": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "observacoes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "placa"
+  ]
+}

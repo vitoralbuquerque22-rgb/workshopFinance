@@ -1,0 +1,38 @@
+{
+  "name": "Orcamento",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "centro_custo_id": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "periodo_mes": {
+      "type": "number"
+    },
+    "periodo_ano": {
+      "type": "number"
+    },
+    "valor_orcado": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "fechado"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "categoria",
+    "periodo_mes",
+    "periodo_ano",
+    "valor_orcado"
+  ]
+}

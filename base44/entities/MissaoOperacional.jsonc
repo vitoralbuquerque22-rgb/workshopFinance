@@ -1,0 +1,438 @@
+{
+  "name": "MissaoOperacional",
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string",
+      "description": "N\u00famero sequencial do atendimento externo (ex: AE-000045)"
+    },
+    "titulo": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o curta do atendimento (ex: Troca de bateria - Frota Cliente X)"
+    },
+    "ordem_servico_id": {
+      "type": "string",
+      "description": "OS que originou o atendimento externo, quando criado a partir de 'execu\u00e7\u00e3o externa'"
+    },
+    "os_numero": {
+      "type": "string"
+    },
+    "cliente_id": {
+      "type": "string"
+    },
+    "cliente_nome": {
+      "type": "string"
+    },
+    "veiculo_cliente_id": {
+      "type": "string",
+      "description": "Ve\u00edculo do cliente que ser\u00e1 atendido, quando aplic\u00e1vel"
+    },
+    "ativo_frota_id": {
+      "type": "string",
+      "description": "Ve\u00edculo/ativo da EMPRESA usado para o deslocamento at\u00e9 o local (AtivoOperacional)"
+    },
+    "ativo_frota_nome": {
+      "type": "string"
+    },
+    "endereco": {
+      "type": "string",
+      "description": "Local onde o servi\u00e7o ser\u00e1 executado"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "equipe": {
+      "type": "array",
+      "description": "Colaboradores designados para o atendimento",
+      "items": {
+        "type": "object",
+        "properties": {
+          "colaborador_id": {
+            "type": "string"
+          },
+          "colaborador_nome": {
+            "type": "string"
+          },
+          "papel": {
+            "type": "string",
+            "enum": [
+              "responsavel",
+              "auxiliar",
+              "motorista"
+            ],
+            "default": "responsavel"
+          }
+        }
+      }
+    },
+    "ferramentas": {
+      "type": "array",
+      "description": "Ferramentas/patrim\u00f4nios levados para o atendimento",
+      "items": {
+        "type": "object",
+        "properties": {
+          "patrimonio_id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "codigo_patrimonial": {
+            "type": "string"
+          },
+          "devolvida": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "pecas": {
+      "type": "array",
+      "description": "Pe\u00e7as utilizadas no atendimento",
+      "items": {
+        "type": "object",
+        "properties": {
+          "peca_id": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number",
+            "default": 1
+          },
+          "valor_unitario": {
+            "type": "number",
+            "default": 0
+          },
+          "custo_unitario": {
+            "type": "number",
+            "default": 0
+          }
+        }
+      }
+    },
+    "valor_servico": {
+      "type": "number",
+      "default": 0,
+      "description": "Valor cobrado do cliente pela m\u00e3o de obra/servi\u00e7o do atendimento externo (base da receita para rentabilidade)"
+    },
+    "km_percorrido": {
+      "type": "number",
+      "default": 0,
+      "description": "Quil\u00f4metros percorridos no deslocamento (ida e volta) at\u00e9 o local do atendimento"
+    },
+    "custos": {
+      "type": "object",
+      "description": "Custos operacionais calculados do atendimento externo (Fase 8)",
+      "properties": {
+        "custo_km": {
+          "type": "number",
+          "default": 0,
+          "description": "km_percorrido x valor_km da configura\u00e7\u00e3o"
+        },
+        "custo_horas": {
+          "type": "number",
+          "default": 0,
+          "description": "horas de atendimento x valor_hora x n\u00ba de pessoas da equipe"
+        },
+        "custo_pecas": {
+          "type": "number",
+          "default": 0,
+          "description": "Somat\u00f3rio do custo das pe\u00e7as utilizadas"
+        },
+        "pedagio": {
+          "type": "number",
+          "default": 0
+        },
+        "alimentacao": {
+          "type": "number",
+          "default": 0
+        },
+        "hospedagem": {
+          "type": "number",
+          "default": 0
+        },
+        "custo_total": {
+          "type": "number",
+          "default": 0,
+          "description": "Soma de todos os custos operacionais do atendimento"
+        },
+        "receita": {
+          "type": "number",
+          "default": 0,
+          "description": "Receita considerada (valor_servico + pe\u00e7as vendidas)"
+        },
+        "rentabilidade": {
+          "type": "number",
+          "default": 0,
+          "description": "receita - custo_total (lucro operacional em R$)"
+        },
+        "margem": {
+          "type": "number",
+          "default": 0,
+          "description": "Margem percentual = rentabilidade / receita * 100"
+        },
+        "conta_pagar_id": {
+          "type": "string",
+          "description": "Conta a Pagar gerada para o custo operacional deste atendimento, quando aplic\u00e1vel"
+        },
+        "calculado_em": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "data_agendada": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando o atendimento externo est\u00e1 agendado para ocorrer (Agenda)"
+    },
+    "saida_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Hor\u00e1rio de sa\u00edda da equipe da oficina (in\u00edcio do deslocamento)"
+    },
+    "chegada_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Hor\u00e1rio de chegada ao local do cliente"
+    },
+    "inicio_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "In\u00edcio da execu\u00e7\u00e3o no local"
+    },
+    "fim_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Fim da execu\u00e7\u00e3o"
+    },
+    "retorno_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Retorno da equipe \u00e0 oficina"
+    },
+    "geo_marcos": {
+      "type": "object",
+      "description": "Geolocaliza\u00e7\u00e3o (lat/lng) capturada em cada marco de presen\u00e7a \u2014 Fase 5",
+      "properties": {
+        "saida": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "registrado_em": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "chegada": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "registrado_em": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "inicio": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "registrado_em": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "fim": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "registrado_em": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "retorno": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            },
+            "registrado_em": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "rastreamento": {
+      "type": "object",
+      "description": "Rastreamento avan\u00e7ado do deslocamento (Fase 10). Pontos de trajeto capturados em tempo real com velocidade, e telemetria derivada (dist\u00e2ncia, tempo parado/em movimento).",
+      "properties": {
+        "ativo": {
+          "type": "boolean",
+          "default": false,
+          "description": "Se o rastreamento cont\u00ednuo est\u00e1 em captura no momento"
+        },
+        "trajeto": {
+          "type": "array",
+          "description": "Sequ\u00eancia de pontos GPS capturados durante o deslocamento",
+          "items": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "lng": {
+                "type": "number"
+              },
+              "velocidade": {
+                "type": "number",
+                "default": 0,
+                "description": "Velocidade instant\u00e2nea em km/h"
+              },
+              "precisao": {
+                "type": "number",
+                "description": "Precis\u00e3o do GPS em metros"
+              },
+              "registrado_em": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "telemetria": {
+          "type": "object",
+          "description": "M\u00e9tricas derivadas do trajeto (recalculadas ao encerrar o rastreamento)",
+          "properties": {
+            "distancia_km": {
+              "type": "number",
+              "default": 0,
+              "description": "Dist\u00e2ncia total percorrida (soma dos trechos) em km"
+            },
+            "velocidade_media": {
+              "type": "number",
+              "default": 0,
+              "description": "Velocidade m\u00e9dia em movimento (km/h)"
+            },
+            "velocidade_maxima": {
+              "type": "number",
+              "default": 0,
+              "description": "Maior velocidade registrada (km/h)"
+            },
+            "tempo_movimento_min": {
+              "type": "number",
+              "default": 0,
+              "description": "Minutos em movimento (velocidade acima do limiar)"
+            },
+            "tempo_parado_min": {
+              "type": "number",
+              "default": 0,
+              "description": "Minutos parado (velocidade abaixo do limiar)"
+            },
+            "pontos": {
+              "type": "number",
+              "default": 0,
+              "description": "Quantidade de pontos capturados"
+            },
+            "calculado_em": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "tempo_deslocamento_min": {
+      "type": "number",
+      "default": 0,
+      "description": "Minutos entre sa\u00edda e chegada (calculado automaticamente)"
+    },
+    "tempo_atendimento_min": {
+      "type": "number",
+      "default": 0,
+      "description": "Minutos entre in\u00edcio e fim da execu\u00e7\u00e3o (calculado automaticamente)"
+    },
+    "tempo_total_min": {
+      "type": "number",
+      "default": 0,
+      "description": "Minutos entre sa\u00edda e retorno \u00e0 oficina (calculado automaticamente)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "agendado",
+        "em_deslocamento",
+        "em_execucao",
+        "concluido",
+        "cancelado"
+      ],
+      "default": "agendado"
+    },
+    "historico": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "empresa_id": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "titulo"
+  ]
+}

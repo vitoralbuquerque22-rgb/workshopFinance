@@ -1,0 +1,76 @@
+{
+  "name": "Bonificacao",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "abrangencia": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "equipe",
+        "filial",
+        "global"
+      ],
+      "default": "individual"
+    },
+    "colaborador_id": {
+      "type": "string"
+    },
+    "filial_id": {
+      "type": "string"
+    },
+    "criterio": {
+      "type": "string",
+      "enum": [
+        "horas_produzidas",
+        "faturamento",
+        "sem_retrabalho",
+        "eficiencia",
+        "personalizado"
+      ],
+      "default": "horas_produzidas"
+    },
+    "meta_valor": {
+      "type": "number",
+      "default": 0
+    },
+    "valor_bonus": {
+      "type": "number",
+      "default": 0
+    },
+    "periodo": {
+      "type": "string",
+      "enum": [
+        "mensal",
+        "trimestral",
+        "campanha"
+      ],
+      "default": "mensal"
+    },
+    "data_inicio": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_fim": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativa",
+        "pausada",
+        "encerrada"
+      ],
+      "default": "ativa"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "name": "RegraComissao",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "escopo": {
+      "type": "string",
+      "enum": [
+        "global",
+        "colaborador",
+        "categoria",
+        "cargo"
+      ],
+      "default": "global"
+    },
+    "colaborador_id": {
+      "type": "string"
+    },
+    "cargo_id": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "prioridade": {
+      "type": "number",
+      "default": 0
+    },
+    "comissao_mao_obra_percentual": {
+      "type": "number",
+      "default": 0
+    },
+    "comissao_peca_percentual": {
+      "type": "number",
+      "default": 0
+    },
+    "comissao_servico_terceirizado_percentual": {
+      "type": "number",
+      "default": 0
+    },
+    "usar_margem": {
+      "type": "boolean",
+      "default": false
+    },
+    "margem_minima": {
+      "type": "number",
+      "default": 0
+    },
+    "comissao_por_margem_percentual": {
+      "type": "number",
+      "default": 0
+    },
+    "regras_categoria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "categoria": {
+            "type": "string"
+          },
+          "percentual": {
+            "type": "number",
+            "default": 0
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

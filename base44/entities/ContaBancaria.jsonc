@@ -1,0 +1,50 @@
+{
+  "name": "ContaBancaria",
+  "type": "object",
+  "properties": {
+    "filial_id": {
+      "type": "string"
+    },
+    "banco_codigo": {
+      "type": "string"
+    },
+    "banco_nome": {
+      "type": "string"
+    },
+    "agencia": {
+      "type": "string"
+    },
+    "conta": {
+      "type": "string"
+    },
+    "tipo_integracao": {
+      "type": "string",
+      "enum": [
+        "cnab",
+        "open_banking",
+        "manual"
+      ],
+      "default": "manual"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativa",
+        "inativa"
+      ],
+      "default": "ativa"
+    },
+    "ultimo_sync": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "open_banking_consent_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "banco_codigo",
+    "agencia",
+    "conta"
+  ]
+}

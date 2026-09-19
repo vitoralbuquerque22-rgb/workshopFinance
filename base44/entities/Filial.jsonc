@@ -1,0 +1,142 @@
+{
+  "name": "Filial",
+  "type": "object",
+  "properties": {
+    "empresa_id": {
+      "type": "string"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "cnpj": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "matriz",
+        "filial"
+      ],
+      "default": "filial"
+    },
+    "endereco": {
+      "type": "string"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "fiscal": {
+      "type": "object",
+      "description": "Dados fiscais do CNPJ, usados para emitir NF-e (produtos) e NFS-e (servi\u00e7os) neste CNPJ",
+      "properties": {
+        "razao_social": {
+          "type": "string",
+          "description": "Raz\u00e3o social do emitente (como consta na Receita)"
+        },
+        "inscricao_estadual": {
+          "type": "string"
+        },
+        "inscricao_municipal": {
+          "type": "string"
+        },
+        "regime_tributario": {
+          "type": "string",
+          "enum": [
+            "simples_nacional",
+            "lucro_presumido",
+            "lucro_real",
+            "mei"
+          ],
+          "default": "simples_nacional"
+        },
+        "cnae_principal": {
+          "type": "string",
+          "description": "CNAE principal da atividade"
+        },
+        "serie_nfe": {
+          "type": "string",
+          "description": "S\u00e9rie usada na emiss\u00e3o de NF-e (produtos)"
+        },
+        "proximo_numero_nfe": {
+          "type": "number",
+          "default": 1,
+          "description": "Pr\u00f3ximo n\u00famero sequencial de NF-e a emitir"
+        },
+        "serie_nfse": {
+          "type": "string",
+          "description": "S\u00e9rie usada na emiss\u00e3o de NFS-e (servi\u00e7os)"
+        },
+        "proximo_numero_nfse": {
+          "type": "number",
+          "default": 1,
+          "description": "Pr\u00f3ximo n\u00famero sequencial de NFS-e a emitir"
+        },
+        "certificado_url": {
+          "type": "string",
+          "description": "Arquivo do certificado digital A1 (.pfx) enviado para emiss\u00e3o"
+        },
+        "certificado_validade": {
+          "type": "string",
+          "format": "date",
+          "description": "Data de validade do certificado digital"
+        },
+        "emite_nfe": {
+          "type": "boolean",
+          "default": true,
+          "description": "Se este CNPJ emite NF-e de produtos (pe\u00e7as)"
+        },
+        "emite_nfse": {
+          "type": "boolean",
+          "default": true,
+          "description": "Se este CNPJ emite NFS-e de servi\u00e7os"
+        }
+      }
+    },
+    "recebedor": {
+      "type": "object",
+      "description": "Identidade de recebedor no gateway de pagamento, usada no split por CNPJ (Cen\u00e1rio 2). Cada CNPJ recebe sua parte direto na conta.",
+      "properties": {
+        "provedor": {
+          "type": "string",
+          "enum": [
+            "mercado_pago",
+            "asaas",
+            "outro"
+          ],
+          "default": "mercado_pago"
+        },
+        "recipient_id": {
+          "type": "string",
+          "description": "ID do recebedor (collector/recipient) deste CNPJ no gateway"
+        },
+        "conta_bancaria_id": {
+          "type": "string",
+          "description": "Conta banc\u00e1ria do sistema onde os recebimentos deste CNPJ s\u00e3o conciliados"
+        },
+        "ativo": {
+          "type": "boolean",
+          "default": false,
+          "description": "Se este CNPJ est\u00e1 apto a receber via split no gateway"
+        },
+        "observacoes": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativa",
+        "inativa"
+      ],
+      "default": "ativa"
+    }
+  },
+  "required": [
+    "nome",
+    "tipo"
+  ]
+}

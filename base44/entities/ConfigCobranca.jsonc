@@ -1,0 +1,95 @@
+{
+  "name": "ConfigCobranca",
+  "type": "object",
+  "properties": {
+    "escopo": {
+      "type": "string",
+      "enum": [
+        "padrao",
+        "cliente"
+      ],
+      "default": "padrao",
+      "description": "padrao = r\u00e9gua da oficina toda. cliente = r\u00e9gua personalizada que sobrep\u00f5e a padr\u00e3o para um cliente espec\u00edfico."
+    },
+    "cliente_id": {
+      "type": "string",
+      "description": "Preenchido apenas quando escopo = cliente"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true,
+      "description": "Liga/desliga a cad\u00eancia de cobran\u00e7a inteira"
+    },
+    "canal_padrao": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "email"
+      ],
+      "default": "whatsapp"
+    },
+    "formas_alvo": {
+      "type": "array",
+      "description": "Quais formas de recebimento disparam a cad\u00eancia de cobran\u00e7a",
+      "items": {
+        "type": "string",
+        "enum": [
+          "boleto",
+          "promissoria",
+          "pix",
+          "transferencia",
+          "cartao",
+          "dinheiro"
+        ]
+      },
+      "default": [
+        "boleto",
+        "promissoria"
+      ]
+    },
+    "passos": {
+      "type": "array",
+      "description": "R\u00e9gua de cobran\u00e7a \u2014 cada passo \u00e9 um disparo relativo ao vencimento",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ativo": {
+            "type": "boolean",
+            "default": true
+          },
+          "momento": {
+            "type": "string",
+            "enum": [
+              "antes",
+              "no_dia",
+              "apos"
+            ],
+            "default": "antes",
+            "description": "antes = X dias antes do vencimento; no_dia = no vencimento; apos = X dias ap\u00f3s vencer"
+          },
+          "dias": {
+            "type": "number",
+            "default": 1,
+            "description": "Quantidade de dias (ignorado quando momento = no_dia)"
+          },
+          "canal": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "whatsapp",
+              "email"
+            ],
+            "default": "auto",
+            "description": "auto = usa o canal_padr\u00e3o da r\u00e9gua"
+          },
+          "texto": {
+            "type": "string",
+            "description": "Mensagem. Vari\u00e1veis: {cliente}, {valor}, {vencimento}, {os_numero}, {oficina}, {linha_digitavel}, {pix}"
+          }
+        }
+      },
+      "default": []
+    }
+  },
+  "required": []
+}

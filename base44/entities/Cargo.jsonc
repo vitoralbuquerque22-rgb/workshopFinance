@@ -1,0 +1,46 @@
+{
+  "name": "Cargo",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "area": {
+      "type": "string",
+      "enum": [
+        "tecnica",
+        "comercial",
+        "administrativa",
+        "gestao",
+        "outros"
+      ],
+      "default": "tecnica"
+    },
+    "modelo_remuneracao_padrao": {
+      "type": "string",
+      "enum": [
+        "salario",
+        "comissao",
+        "salario_comissao",
+        "salario_bonificacao",
+        "comissao_bonificacao",
+        "personalizado"
+      ],
+      "default": "salario"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

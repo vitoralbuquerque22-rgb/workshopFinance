@@ -1,0 +1,53 @@
+{
+  "name": "IntegracaoConfig",
+  "type": "object",
+  "properties": {
+    "servico": {
+      "type": "string",
+      "enum": [
+        "cpf",
+        "cnpj",
+        "veiculo",
+        "cep"
+      ],
+      "default": "cnpj"
+    },
+    "nome_provedor": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "usuario": {
+      "type": "string"
+    },
+    "senha": {
+      "type": "string"
+    },
+    "timeout_ms": {
+      "type": "number",
+      "default": 10000
+    },
+    "ambiente": {
+      "type": "string",
+      "enum": [
+        "homologacao",
+        "producao"
+      ],
+      "default": "producao"
+    },
+    "observacoes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "servico"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Atividade",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "email",
+        "ligacao",
+        "tarefa",
+        "nota",
+        "reuniao"
+      ],
+      "default": "nota"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "consultor": {
+      "type": "string"
+    },
+    "data_agendada": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "concluida": {
+      "type": "boolean",
+      "default": false
+    },
+    "data_conclusao": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "lead_id",
+    "tipo"
+  ]
+}
