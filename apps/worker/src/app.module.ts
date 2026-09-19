@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { BullModule } from '@nestjs/bullmq';
-import { OutboxRelayService } from './outbox/outbox.service';
-import { SystemEventsProcessor } from './processor/system-events.processor';
+import { OutboxRelayService } from './outbox/outbox.service.js';
+import { SystemEventsProcessor } from './processor/system-events.processor.js';
 
 @Module({
   imports: [

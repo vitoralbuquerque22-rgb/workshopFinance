@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { RequestContext } from '../context/request-context';
+import { RequestContext } from '../context/request-context.js';
 import { randomUUID } from 'crypto';
 
 @Injectable()

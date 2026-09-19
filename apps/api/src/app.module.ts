@@ -1,7 +1,7 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
-import { HealthController } from './health.controller';
-import { RequestContextMiddleware } from './common/context/request-context.middleware';
-import { AuthModule } from './auth/auth.module';
+import { HealthController } from './health.controller.js';
+import { RequestContextMiddleware } from './common/context/request-context.middleware.js';
+import { AuthModule } from './auth/auth.module.js';
 
 @Module({
   imports: [AuthModule],

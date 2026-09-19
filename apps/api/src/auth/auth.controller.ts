@@ -1,7 +1,7 @@
-import { Controller, Request, Post, UseGuards, Get, Res, UnauthorizedException } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { Response } from 'express';
+import { Controller, Post, Get, Body, Res, Req, UseGuards, HttpCode, UnauthorizedException } from '@nestjs/common';
+import { AuthService } from './auth.service.js';
+import { JwtAuthGuard } from './guards/jwt-auth.guard.js';
+import type { Response, Request } from 'express';
 import { AUTH_COOKIE_NAME } from '@erp/shared';
 
 @Controller('auth')
@@ -9,7 +9,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  async login(@Request() req, @Res({ passthrough: true }) res: Response) {
+  async login(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
     const { email, password } = req.body;
     const user = await this.authService.validateUser(email, password);
     if (!user) {
@@ -34,9 +34,9 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('me')
-  async getProfile(@Request() req) {
+  async getProfile(@Req() req: Request) {
     // Validate identity from DB instead of trusting just the JWT
-    const { userId, tenantId } = req.user;
+    const { userId, tenantId } = req.user as any;
     const verifiedUser = await this.authService.verifyUser(userId, tenantId);
     return verifiedUser;
   }
